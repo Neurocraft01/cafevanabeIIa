@@ -48,25 +48,25 @@ export default function MenuPage() {
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
       {/* HEADER */}
-      <header className="relative h-[40vh] flex items-center justify-center overflow-hidden bg-gray-50">
+      <header className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-gray-900">
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2000&auto=format&fit=crop"
             alt="Menu Header"
             fill
-            className="object-cover opacity-20"
+            className="object-cover opacity-40"
             priority
           />
         </div>
-        <div className="relative z-10 text-center px-4">
+        <div className="relative z-10 text-center px-4 text-white">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-4"
+            className="text-5xl md:text-7xl font-serif font-bold mb-6"
           >
             Our <span className="italic font-light">Menu</span>
           </motion.h1>
-          <p className="text-gray-500 font-light tracking-widest uppercase text-xs md:text-sm">
+          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
             Curated flavors for the mindful palate
           </p>
         </div>

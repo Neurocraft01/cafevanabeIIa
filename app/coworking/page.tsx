@@ -9,7 +9,7 @@ export default function CoworkingPage() {
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
       {/* HERO */}
-      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden bg-gray-900">
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-gray-900">
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop"
@@ -23,11 +23,11 @@ export default function CoworkingPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-4"
+            className="text-5xl md:text-7xl font-serif font-bold mb-6"
           >
             Work <span className="italic font-light">&</span> Dine
           </motion.h1>
-          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base">
+          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
             A productive space with premium hospitality
           </p>
         </div>
@@ -78,23 +78,23 @@ export default function CoworkingPage() {
             {[
               {
                 name: "Day Pass",
-                price: "$25",
+                price: "₹299",
                 period: "/day",
-                features: ["Access from 8am - 6pm", "High-speed WiFi", "Unlimited Coffee & Tea", "Open Seating"],
+                features: ["Access from 9am - 9pm", "High-speed WiFi", "Unlimited Coffee & Tea", "Open Seating"],
                 highlight: false
               },
               {
                 name: "Monthly Flex",
-                price: "$350",
+                price: "₹4,999",
                 period: "/month",
-                features: ["24/7 Access", "High-speed WiFi", "Unlimited Coffee & Tea", "Meeting Room Credits (2hrs)", "Mail Handling"],
+                features: ["Daily Access 9am - 9pm", "High-speed WiFi", "Unlimited Coffee & Tea", "Meeting Room Credits (2hrs)", "Locker Facility"],
                 highlight: true
               },
               {
                 name: "Dedicated Desk",
-                price: "$500",
+                price: "₹7,999",
                 period: "/month",
-                features: ["24/7 Access", "Dedicated Desk & Locker", "Unlimited Coffee & Tea", "Meeting Room Credits (5hrs)", "Mail Handling", "Priority Event Access"],
+                features: ["Daily Access 9am - 9pm", "Dedicated Desk & Locker", "Unlimited Coffee & Tea", "Meeting Room Credits (5hrs)", "Mail Handling", "Priority Event Access"],
                 highlight: false
               }
             ].map((plan, index) => (

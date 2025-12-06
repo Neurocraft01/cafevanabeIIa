@@ -39,7 +39,7 @@ export default function Home() {
             className="py-12 md:py-20"
           >
             <h2 className="text-black uppercase tracking-[0.5em] text-xs md:text-sm mb-8 font-medium">
-              Est. 2024  Urban Sanctuary
+              Est. 2024 · Pimple Nilakh, Pune
             </h2>
             <h1 className="text-7xl md:text-9xl font-serif font-bold text-black mb-6 leading-none tracking-tighter">
               VANA<span className="italic font-light">BELLA</span>

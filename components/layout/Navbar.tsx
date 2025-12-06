@@ -37,7 +37,7 @@ export default function Navbar() {
     <nav
       className={clsx(
         "fixed w-full z-50 transition-all duration-500",
-        scrolled ? "bg-white/90 backdrop-blur-md py-4 shadow-sm" : "bg-transparent py-8"
+        scrolled ? "bg-white/95 backdrop-blur-md py-4 shadow-lg" : "bg-transparent py-8"
       )}
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
@@ -56,7 +56,7 @@ export default function Navbar() {
               key={link.name}
               href={link.href}
               className={clsx(
-                "text-xs font-bold uppercase tracking-widest hover:text-gray-500 transition-colors",
+                "text-sm font-semibold uppercase tracking-wider hover:text-gray-500 transition-colors drop-shadow-sm",
                 scrolled || !isHome ? "text-black" : "text-white"
               )}
             >
@@ -64,10 +64,10 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/contact"
+            href="/reservations"
             className={clsx(
-              "px-6 py-2 border text-xs font-bold uppercase tracking-widest transition-all hover:bg-black hover:text-white hover:border-black",
-              scrolled || !isHome ? "border-black text-black" : "border-white text-white"
+              "px-6 py-2.5 border-2 text-sm font-bold uppercase tracking-wider transition-all hover:bg-black hover:text-white hover:border-black shadow-md",
+              scrolled || !isHome ? "border-black text-black bg-white" : "border-white text-white bg-black/20 backdrop-blur-sm"
             )}
           >
             Book Now
@@ -103,11 +103,11 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href="/reservations"
               onClick={() => setIsOpen(false)}
-              className="px-8 py-3 bg-black text-white font-bold uppercase tracking-widest text-sm"
+              className="px-8 py-3 bg-black text-white font-bold uppercase tracking-widest text-sm hover:bg-gray-800 transition-colors"
             >
-              Book a Table
+              Book Now
             </Link>
           </motion.div>
         )}

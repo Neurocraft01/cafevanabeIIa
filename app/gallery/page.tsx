@@ -6,6 +6,10 @@ import { useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
+  { src: "/image 1.jpg", category: "Interior" },
+  { src: "/image 2.jpg", category: "Food" },
+  { src: "/image 3.jpg", category: "Interior" },
+  { src: "/image 4.jpg", category: "Food" },
   { src: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000&auto=format&fit=crop", category: "Interior" },
   { src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop", category: "Food" },
   { src: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop", category: "Interior" },
@@ -38,7 +42,7 @@ export default function GalleryPage() {
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
       {/* HERO */}
-      <section className="relative h-[40vh] flex items-center justify-center overflow-hidden bg-gray-900">
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-gray-900">
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2000&auto=format&fit=crop"
@@ -52,11 +56,11 @@ export default function GalleryPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-4"
+            className="text-5xl md:text-7xl font-serif font-bold mb-6"
           >
             Visual <span className="italic font-light">Journey</span>
           </motion.h1>
-          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base">
+          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
             A glimpse into our world
           </p>
         </div>

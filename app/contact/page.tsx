@@ -9,7 +9,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
       {/* HERO */}
-      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden bg-gray-900">
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-gray-900">
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?q=80&w=2000&auto=format&fit=crop"
@@ -23,11 +23,11 @@ export default function ContactPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-4"
+            className="text-5xl md:text-7xl font-serif font-bold mb-6"
           >
             Get in <span className="italic font-light">Touch</span>
           </motion.h1>
-          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base">
+          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
             We'd love to hear from you
           </p>
         </div>
@@ -82,7 +82,7 @@ export default function ContactPage() {
             <div>
               <h2 className="text-3xl font-serif font-bold mb-8">Visit Us</h2>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                Located in the historic district, our restaurant offers a serene escape from the bustling city. Valet parking is available.
+                Located in Pimple Nilakh, Pune, VanaBella offers a green, plant-filled oasis where nature meets flavor. With 200+ plants and garden seating, join us for an unforgettable dining experience.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -91,14 +91,14 @@ export default function ContactPage() {
                     <MapPin className="mt-1 text-gray-400" />
                     <div>
                       <h4 className="font-bold uppercase tracking-widest text-sm mb-1">Address</h4>
-                      <p className="text-gray-600 text-sm">123 Culinary Avenue<br/>New York, NY 10012</p>
+                      <p className="text-gray-600 text-sm">Cafe VanaBella<br/>Pimple Nilakh, Pune<br/>Near Srimal Hospital<br/>Maharashtra, India</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Phone className="mt-1 text-gray-400" />
                     <div>
                       <h4 className="font-bold uppercase tracking-widest text-sm mb-1">Phone</h4>
-                      <p className="text-gray-600 text-sm">+1 (212) 555-0123</p>
+                      <p className="text-gray-600 text-sm">Contact via Instagram: @cafevanabella</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -116,16 +116,12 @@ export default function ContactPage() {
                     <h4 className="font-bold uppercase tracking-widest text-sm mb-1">Hours</h4>
                     <div className="space-y-2 text-sm text-gray-600">
                       <div className="flex justify-between gap-8">
-                        <span>Mon - Thu</span>
-                        <span>11:00 AM - 10:00 PM</span>
-                      </div>
-                      <div className="flex justify-between gap-8">
-                        <span>Fri - Sat</span>
+                        <span>Monday - Sunday</span>
                         <span>11:00 AM - 11:00 PM</span>
                       </div>
                       <div className="flex justify-between gap-8">
-                        <span>Sunday</span>
-                        <span>10:00 AM - 9:00 PM</span>
+                        <span className="text-green-600 font-semibold">⭐ Rated 4.8/5</span>
+                        <span className="text-gray-500">55+ Reviews</span>
                       </div>
                     </div>
                   </div>

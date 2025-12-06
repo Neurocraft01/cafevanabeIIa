@@ -49,11 +49,11 @@ export default function Footer() {
             <ul className="space-y-4 text-sm text-gray-600">
               <li className="flex items-start space-x-3">
                 <MapPin size={18} className="mt-1 text-black" />
-                <span>123 Green Avenue, Urban District,<br />New York, NY 10001</span>
+                <span>Cafe VanaBella,<br />Pimple Nilakh, Pune<br />Near Srimal Hospital<br />Maharashtra, India</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Phone size={18} className="text-black" />
-                <span>+1 (555) 123-4567</span>
+                <span>@cafevanabella (Instagram)</span>
               </li>
               <li className="flex items-center space-x-3">
                 <Mail size={18} className="text-black" />

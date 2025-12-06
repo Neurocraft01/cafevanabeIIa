@@ -61,16 +61,16 @@ export default function AboutPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl font-serif font-bold mb-8">Tradition Meets <span className="italic text-gray-500">Innovation</span></h2>
-              <p className="text-gray-600 leading-relaxed mb-6 text-lg">
-                Founded in the heart of the city, VanaBella began with a simple mission: to honor traditional cooking techniques while embracing modern flavors. What started as a small family kitchen has grown into a culinary destination.
+              <p className="text-gray-600 leading-relaxed mb-6">
+                Founded in 2024 in Pimple Nilakh, Pune, VanaBella began with a simple mission: to create a green urban sanctuary where nature meets exceptional culinary experiences. With 200+ plants, pet-friendly ambiance, and garden seating, what started as a vision has grown into a beloved destination for food enthusiasts and coffee lovers alike. Rated ⭐ 4.8/5 by 55+ verified guests.
               </p>
               <p className="text-gray-600 leading-relaxed mb-8 text-lg">
-                We believe that food is more than just sustenance—it's a language. Every dish we serve tells a story of its origin, the hands that prepared it, and the passion that drives us. We source our ingredients locally, supporting our community's farmers and ensuring the freshest flavors on your plate.
+                We believe that food is more than just sustenance—it's an experience, a connection. Every dish we serve tells a story of passion, quality, and authenticity. We source our ingredients locally, supporting our community's farmers and ensuring the freshest flavors on your plate.
               </p>
               <div className="grid grid-cols-2 gap-8">
                 <div>
                   <h4 className="font-bold uppercase tracking-widest mb-2 text-sm">Our Philosophy</h4>
-                  <p className="text-gray-500 text-sm">Sustainable sourcing, zero waste, and authentic flavors.</p>
+                  <p className="text-gray-500 text-sm">Fresh ingredients, authentic flavors, and a welcoming atmosphere for all.</p>
                 </div>
                 <div>
                   <h4 className="font-bold uppercase tracking-widest mb-2 text-sm">Our Promise</h4>
@@ -87,10 +87,10 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { icon: ChefHat, label: "Master Chefs", value: "12" },
-              { icon: Award, label: "Awards Won", value: "25+" },
-              { icon: Users, label: "Happy Guests", value: "50k+" },
-              { icon: Clock, label: "Years Open", value: "15" },
+              { icon: ChefHat, label: "Master Chefs", value: "5+" },
+              { icon: Award, label: "Menu Items", value: "100+" },
+              { icon: Users, label: "Happy Guests", value: "5k+" },
+              { icon: Clock, label: "Established", value: "2024" },
             ].map((stat, index) => (
               <motion.div 
                 key={index}
@@ -114,14 +114,14 @@ export default function AboutPage() {
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-serif font-bold mb-4">Meet the <span className="italic text-gray-500">Team</span></h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">The passionate individuals behind every dish.</p>
+            <p className="text-gray-500 max-w-2xl mx-auto">The passionate individuals behind every dish at VanaBella.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { name: "Elena Rossi", role: "Executive Chef", img: "https://images.unsplash.com/photo-1583394293214-28ded15ee548?q=80&w=800&auto=format&fit=crop" },
-              { name: "Marco Chen", role: "Head Sommelier", img: "https://images.unsplash.com/photo-1566554273541-37a9ca77b91f?q=80&w=800&auto=format&fit=crop" },
-              { name: "Sarah James", role: "Pastry Chef", img: "https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?q=80&w=800&auto=format&fit=crop" },
+              { name: "Head Chef", role: "Culinary Director", img: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=800&auto=format&fit=crop" },
+              { name: "Sous Chef", role: "Kitchen Manager", img: "https://images.unsplash.com/photo-1581299894007-aaa50297cf16?q=80&w=800&auto=format&fit=crop" },
+              { name: "Pastry Chef", role: "Dessert Specialist", img: "https://images.unsplash.com/photo-1595273670150-bd0c3c392e46?q=80&w=800&auto=format&fit=crop" },
             ].map((member, index) => (
               <motion.div 
                 key={index}

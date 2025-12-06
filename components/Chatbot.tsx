@@ -24,20 +24,77 @@ export default function Chatbot() {
     e.preventDefault();
     if (!inputValue.trim()) return;
 
-    const userMessage = inputValue;
-    setMessages(prev => [...prev, { text: userMessage, isUser: true }]);
+    const userMessage = inputValue.toLowerCase();
+    setMessages(prev => [...prev, { text: inputValue, isUser: true }]);
     setInputValue("");
 
-    // Simulate bot response
+    // Enhanced bot responses with comprehensive information
     setTimeout(() => {
-      let botResponse = "Thank you for your message. Our team will get back to you shortly.";
+      let botResponse = "Thank you for your message! I'm here to help. Ask me about our menu, reservations, hours, location, workshops, coworking space, or celebrations!";
       
-      if (userMessage.toLowerCase().includes("menu")) {
-        botResponse = "You can view our full menu on the Menu page. We offer a variety of artisan coffees and gourmet dishes.";
-      } else if (userMessage.toLowerCase().includes("book") || userMessage.toLowerCase().includes("reservation")) {
-        botResponse = "To make a reservation, please call us or use the contact form on our website.";
-      } else if (userMessage.toLowerCase().includes("hour") || userMessage.toLowerCase().includes("open")) {
-        botResponse = "We are open Mon-Sun from 8:00 AM to 10:00 PM.";
+      // Menu related
+      if (userMessage.includes("menu") || userMessage.includes("food") || userMessage.includes("eat") || userMessage.includes("dish")) {
+        botResponse = "Our menu features 100+ vegetarian items! We serve: Soups, Salads, Appetizers, Small Bites, Sandwiches & Burgers, Pizzas (7 varieties), Pasta (5 types), Wraps, Beverages, Coolers, Mocktails, Shakes, and Desserts. Prices range from ₹49 to ₹349. Check our Menu page for details!";
+      } 
+      // Reservations
+      else if (userMessage.includes("book") || userMessage.includes("reservation") || userMessage.includes("table") || userMessage.includes("reserve")) {
+        botResponse = "You can make a reservation through our Reservations page! Simply fill out the form with your details, date, time, and number of guests. We'll confirm within 30 minutes. For same-day bookings, contact us via Instagram @cafevanabella.";
+      } 
+      // Hours
+      else if (userMessage.includes("hour") || userMessage.includes("open") || userMessage.includes("close") || userMessage.includes("time") || userMessage.includes("when")) {
+        botResponse = "We're open daily from 11:00 AM to 11:00 PM, all 7 days of the week! Perfect for lunch, dinner, coffee, or coworking in our plant-filled garden setting with 200+ plants. ⭐ Rated 4.8/5 with 55+ verified reviews!";
+      } 
+      // Location
+      else if (userMessage.includes("location") || userMessage.includes("where") || userMessage.includes("address") || userMessage.includes("find") || userMessage.includes("direction")) {
+        botResponse = "📍 We're located in Pimple Nilakh, Pune (Near Srimal Hospital), Maharashtra, India. We have 200+ plants, garden seating, pet-friendly space, and WiFi! Rated ⭐ 4.8/5 by 55+ guests. Visit our Contact page for map. Follow @cafevanabella on Instagram!";
+      } 
+      // Workshops
+      else if (userMessage.includes("workshop") || userMessage.includes("class") || userMessage.includes("cooking") || userMessage.includes("learn")) {
+        botResponse = "We offer hands-on culinary workshops! 🍝 Pasta Making Masterclass (₹1,200), 🧁 Pastry Techniques (₹1,500), and 🌮 Indian Street Food Workshop (₹1,000). Classes are every Saturday, 10 AM - 2 PM. Check our Workshop page for details!";
+      } 
+      // Coworking
+      else if (userMessage.includes("cowork") || userMessage.includes("work") || userMessage.includes("wifi") || userMessage.includes("laptop") || userMessage.includes("study")) {
+        botResponse = "Yes! We have a premium coworking space with high-speed WiFi, unlimited coffee & tea, power outlets at every seat, and natural lighting. 💼 Day Pass: ₹299 | Monthly Flex: ₹4,999 | Dedicated Desk: ₹7,999. Visit our Co-working page!";
+      } 
+      // Celebrations/Events
+      else if (userMessage.includes("celebration") || userMessage.includes("party") || userMessage.includes("event") || userMessage.includes("birthday") || userMessage.includes("corporate") || userMessage.includes("private")) {
+        botResponse = "We host amazing celebrations! 🎂 Birthdays, 💼 Corporate Events, and 🎉 Private Parties. We offer customized menus, decorations, private seating areas, and dedicated service. Capacity: 30-50 guests. Contact us to plan your special event!";
+      } 
+      // Vegetarian/Veg
+      else if (userMessage.includes("veg") || userMessage.includes("vegetarian") || userMessage.includes("non-veg") || userMessage.includes("meat")) {
+        botResponse = "All our dishes are 100% vegetarian! 🌱 We offer a wide variety of delicious veg options including soups, salads, pizzas, pasta, wraps, and more. Perfect for vegetarian food lovers!";
+      } 
+      // Pricing
+      else if (userMessage.includes("price") || userMessage.includes("cost") || userMessage.includes("expensive") || userMessage.includes("cheap") || userMessage.includes("₹")) {
+        botResponse = "Our prices are very reasonable! Small Bites: ₹49-89, Pizzas: ₹189-299, Pasta: ₹189-259, Beverages: ₹49-129, Mocktails: ₹149-199, Desserts: ₹89-189. We offer great value for premium quality!";
+      } 
+      // Payment
+      else if (userMessage.includes("payment") || userMessage.includes("pay") || userMessage.includes("card") || userMessage.includes("cash") || userMessage.includes("upi")) {
+        botResponse = "We accept multiple payment methods: Cash, Credit/Debit Cards, UPI (Google Pay, PhonePe, Paytm), and digital wallets. Payment is convenient and secure!";
+      } 
+      // Parking
+      else if (userMessage.includes("park") || userMessage.includes("parking")) {
+        botResponse = "Yes, we have ample parking space available for our guests. Both two-wheeler and four-wheeler parking is available on premises.";
+      } 
+      // Delivery
+      else if (userMessage.includes("delivery") || userMessage.includes("takeaway") || userMessage.includes("take away") || userMessage.includes("parcel")) {
+        botResponse = "Currently, we offer dine-in and takeaway services. For takeaway orders, please call us via Instagram @cafevanabella. Delivery through food apps coming soon!";
+      } 
+      // WiFi
+      else if (userMessage.includes("internet") || userMessage.includes("password")) {
+        botResponse = "Free high-speed WiFi is available for all our guests! Ask our staff for the password when you visit. Our coworking members get priority bandwidth.";
+      } 
+      // Contact
+      else if (userMessage.includes("contact") || userMessage.includes("call") || userMessage.includes("phone") || userMessage.includes("email")) {
+        botResponse = "Reach us at: Instagram @cafevanabella | Email: hello@cafevanabella.com. Visit our Contact page for more details. We respond within 1-2 hours!";
+      }
+      // Special requests
+      else if (userMessage.includes("allergy") || userMessage.includes("allergi") || userMessage.includes("dietary") || userMessage.includes("jain") || userMessage.includes("gluten")) {
+        botResponse = "We accommodate dietary restrictions and allergies! Please inform our staff about any specific requirements (Jain food, gluten-free, nut allergies, etc.) when ordering. We'll customize dishes for you.";
+      }
+      // About
+      else if (userMessage.includes("about") || userMessage.includes("story") || userMessage.includes("history") || userMessage.includes("who")) {
+        botResponse = "VanaBella opened in 2024 as an urban sanctuary blending nature with flavor. Located in Pimple Nilakh, Pune with 200+ plants, we offer 100+ vegetarian dishes, coworking space, culinary workshops, and event hosting. Pet-friendly & WiFi enabled! ⭐ 4.8/5 rating. Visit our About page!";
       }
 
       setMessages(prev => [...prev, { text: botResponse, isUser: false }]);
