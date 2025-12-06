@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -8,13 +8,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 
 const navLinks = [
-  { name: "Home", href: "/" },
   { name: "Menu", href: "/menu" },
   { name: "Workshop", href: "/workshop" },
   { name: "Co-working", href: "/coworking" },
   { name: "Gallery", href: "/gallery" },
   { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -24,7 +22,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -32,16 +30,23 @@ export default function Navbar() {
 
   if (pathname?.startsWith("/admin")) return null;
 
+  // Determine if we are on the home page for initial transparency
+  const isHome = pathname === "/";
+
   return (
     <nav
       className={clsx(
-        "fixed w-full z-50 transition-all duration-500 border-b",
-        scrolled ? "bg-forest-950/90 backdrop-blur-md py-4 border-white/10" : "bg-transparent py-6 border-transparent"
+        "fixed w-full z-50 transition-all duration-500",
+        scrolled ? "bg-white/90 backdrop-blur-md py-4 shadow-sm" : "bg-transparent py-8"
       )}
     >
-      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-serif font-bold text-cream-50">
-          Vana<span className="text-gold-500">Bella</span>
+      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
+        
+        {/* Logo */}
+        <Link href="/" className="relative z-50 group">
+          <h1 className={clsx("text-2xl md:text-3xl font-serif font-bold tracking-tighter transition-colors", scrolled || !isHome ? "text-black" : "text-white")}>
+            VANA<span className="italic font-light">BELLA</span>
+          </h1>
         </Link>
 
         {/* Desktop Menu */}
@@ -50,23 +55,29 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="font-medium text-sm uppercase tracking-widest text-cream-50/80 hover:text-gold-500 transition-colors"
+              className={clsx(
+                "text-xs font-bold uppercase tracking-widest hover:text-gray-500 transition-colors",
+                scrolled || !isHome ? "text-black" : "text-white"
+              )}
             >
               {link.name}
             </Link>
           ))}
           <Link
             href="/contact"
-            className="px-6 py-2 border border-gold-500 text-gold-500 hover:bg-gold-500 hover:text-forest-950 transition-all font-bold uppercase tracking-widest text-xs"
+            className={clsx(
+              "px-6 py-2 border text-xs font-bold uppercase tracking-widest transition-all hover:bg-black hover:text-white hover:border-black",
+              scrolled || !isHome ? "border-black text-black" : "border-white text-white"
+            )}
           >
-            Book a Table
+            Book Now
           </Link>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-cream-50 hover:text-gold-500 transition-colors"
           onClick={() => setIsOpen(!isOpen)}
+          className={clsx("md:hidden relative z-50", scrolled || !isHome ? "text-black" : "text-white")}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -76,30 +87,28 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "100vh" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden fixed inset-0 bg-forest-950 z-40 pt-24 px-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-8"
           >
-            <div className="flex flex-col space-y-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-cream-50 text-2xl font-serif font-medium border-b border-white/10 pb-4 hover:text-gold-500 transition-colors"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
+            {navLinks.map((link) => (
               <Link
-                href="/contact"
-                className="inline-block text-center w-full py-4 bg-gold-500 text-forest-950 font-bold uppercase tracking-widest mt-4"
+                key={link.name}
+                href={link.href}
                 onClick={() => setIsOpen(false)}
+                className="text-2xl font-serif font-bold text-black hover:text-gray-500 transition-colors"
               >
-                Book a Table
+                {link.name}
               </Link>
-            </div>
+            ))}
+            <Link
+              href="/contact"
+              onClick={() => setIsOpen(false)}
+              className="px-8 py-3 bg-black text-white font-bold uppercase tracking-widest text-sm"
+            >
+              Book a Table
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

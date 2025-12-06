@@ -1,150 +1,154 @@
-"use client";
+﻿"use client";
 
-import { MapPin, Phone, Mail, Clock, Send, ArrowRight } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import Image from "next/image";
-import { useRef } from "react";
 
 export default function ContactPage() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const yHero = useTransform(scrollYProgress, [0, 0.2], [0, 200]);
-
   return (
-    <div ref={containerRef} className="bg-forest-950 text-cream-50 selection:bg-gold-500 selection:text-forest-950 overflow-x-hidden">
+    <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
-      {/* HERO SECTION */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <motion.div style={{ y: yHero }} className="absolute inset-0 z-0">
+      {/* HERO */}
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden bg-gray-900">
+        <div className="absolute inset-0 z-0">
           <Image 
-            src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2000&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?q=80&w=2000&auto=format&fit=crop"
             alt="Contact Hero"
             fill
-            className="object-cover brightness-[0.3]"
+            className="object-cover opacity-40"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-forest-950/30 via-transparent to-forest-950"></div>
-        </motion.div>
-
-        <div className="relative z-10 text-center max-w-4xl px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
+        </div>
+        <div className="relative z-10 text-center px-4 text-white">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            className="text-5xl md:text-7xl font-serif font-bold mb-4"
           >
-            <span className="text-gold-500 uppercase tracking-[0.3em] text-xs font-bold mb-6 block">Connect With Us</span>
-            <h1 className="text-6xl md:text-8xl font-serif font-medium text-cream-50 mb-8 leading-tight">
-              Get in <span className="italic text-gold-500">Touch</span>
-            </h1>
-          </motion.div>
+            Get in <span className="italic font-light">Touch</span>
+          </motion.h1>
+          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base">
+            We'd love to hear from you
+          </p>
         </div>
       </section>
 
-      <div className="container mx-auto px-4 md:px-6 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+      <div className="container mx-auto px-4 py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           
-          {/* Contact Info */}
-          <div className="space-y-16">
+          {/* CONTACT FORM */}
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="bg-gray-50 p-8 md:p-12"
+          >
+            <h2 className="text-3xl font-serif font-bold mb-8">Send a Message</h2>
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Name</label>
+                  <input type="text" className="w-full bg-white border-b border-gray-200 p-3 focus:border-black focus:outline-none transition-colors" placeholder="John Doe" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Email</label>
+                  <input type="email" className="w-full bg-white border-b border-gray-200 p-3 focus:border-black focus:outline-none transition-colors" placeholder="john@example.com" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Subject</label>
+                <select className="w-full bg-white border-b border-gray-200 p-3 focus:border-black focus:outline-none transition-colors">
+                  <option>General Inquiry</option>
+                  <option>Private Events</option>
+                  <option>Press & Media</option>
+                  <option>Careers</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-widest text-gray-500">Message</label>
+                <textarea rows={4} className="w-full bg-white border-b border-gray-200 p-3 focus:border-black focus:outline-none transition-colors resize-none" placeholder="How can we help you?"></textarea>
+              </div>
+              <button className="bg-black text-white px-8 py-4 uppercase tracking-widest text-xs font-bold hover:bg-gray-800 transition-colors flex items-center gap-2">
+                Send Message <Send size={14} />
+              </button>
+            </form>
+          </motion.div>
+
+          {/* INFO & MAP */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="space-y-12"
+          >
             <div>
-              <h2 className="text-4xl font-serif font-medium text-cream-50 mb-8">Visit Our Sanctuary</h2>
-              <p className="text-cream-100/60 font-light leading-relaxed max-w-md mb-12">
-                Whether you want to book a table, plan an event, or just say hello, we'd love to hear from you.
+              <h2 className="text-3xl font-serif font-bold mb-8">Visit Us</h2>
+              <p className="text-gray-600 mb-8 leading-relaxed">
+                Located in the historic district, our restaurant offers a serene escape from the bustling city. Valet parking is available.
               </p>
               
-              <div className="space-y-10">
-                <div className="flex items-start gap-6 group">
-                  <MapPin className="w-6 h-6 text-gold-500 mt-1" />
-                  <div>
-                    <h3 className="font-serif font-bold text-xl text-cream-50 mb-2">Address</h3>
-                    <p className="text-cream-100/60 font-light">123 Green Street, Urban City, India</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <MapPin className="mt-1 text-gray-400" />
+                    <div>
+                      <h4 className="font-bold uppercase tracking-widest text-sm mb-1">Address</h4>
+                      <p className="text-gray-600 text-sm">123 Culinary Avenue<br/>New York, NY 10012</p>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex items-start gap-6 group">
-                  <Phone className="w-6 h-6 text-gold-500 mt-1" />
-                  <div>
-                    <h3 className="font-serif font-bold text-xl text-cream-50 mb-2">Phone</h3>
-                    <p className="text-cream-100/60 font-light">+91-9074627887</p>
-                    <p className="text-cream-100/60 font-light">+91-8262022502</p>
+                  <div className="flex items-start gap-4">
+                    <Phone className="mt-1 text-gray-400" />
+                    <div>
+                      <h4 className="font-bold uppercase tracking-widest text-sm mb-1">Phone</h4>
+                      <p className="text-gray-600 text-sm">+1 (212) 555-0123</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <Mail className="mt-1 text-gray-400" />
+                    <div>
+                      <h4 className="font-bold uppercase tracking-widest text-sm mb-1">Email</h4>
+                      <p className="text-gray-600 text-sm">hello@cafevanabella.com</p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-6 group">
-                  <Mail className="w-6 h-6 text-gold-500 mt-1" />
+                <div className="flex items-start gap-4">
+                  <Clock className="mt-1 text-gray-400" />
                   <div>
-                    <h3 className="font-serif font-bold text-xl text-cream-50 mb-2">Email</h3>
-                    <p className="text-cream-100/60 font-light">info@cafevanabella.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-6 group">
-                  <Clock className="w-6 h-6 text-gold-500 mt-1" />
-                  <div>
-                    <h3 className="font-serif font-bold text-xl text-cream-50 mb-2">Hours</h3>
-                    <p className="text-cream-100/60 font-light">Mon - Sun: 9:00 AM - 11:00 PM</p>
+                    <h4 className="font-bold uppercase tracking-widest text-sm mb-1">Hours</h4>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <div className="flex justify-between gap-8">
+                        <span>Mon - Thu</span>
+                        <span>11:00 AM - 10:00 PM</span>
+                      </div>
+                      <div className="flex justify-between gap-8">
+                        <span>Fri - Sat</span>
+                        <span>11:00 AM - 11:00 PM</span>
+                      </div>
+                      <div className="flex justify-between gap-8">
+                        <span>Sunday</span>
+                        <span>10:00 AM - 9:00 PM</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Map Placeholder */}
-            <div className="h-64 w-full bg-forest-900/20 border border-white/10 relative group overflow-hidden">
-               <Image 
+            {/* MAP PLACEHOLDER */}
+            <div className="h-[300px] bg-gray-100 relative grayscale hover:grayscale-0 transition-all duration-500">
+              <Image 
                 src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop"
                 alt="Map Location"
                 fill
-                className="object-cover opacity-40 grayscale group-hover:grayscale-0 transition-all duration-700"
-               />
-               <div className="absolute inset-0 flex items-center justify-center">
-                 <span className="bg-forest-950/80 backdrop-blur px-6 py-3 text-gold-500 uppercase tracking-widest text-xs font-bold border border-gold-500/30">
-                   View on Google Maps
-                 </span>
-               </div>
+                className="object-cover"
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/10">
+                <div className="bg-white p-4 shadow-lg">
+                  <MapPin className="text-black" size={32} />
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* Contact Form - Minimal */}
-          <div className="bg-forest-900/10 p-8 md:p-12 border border-white/5 backdrop-blur-sm">
-            <h2 className="text-3xl font-serif font-medium text-cream-50 mb-10">Send a Message</h2>
-            <form className="space-y-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="group">
-                  <input type="text" className="w-full bg-transparent border-b border-white/20 py-4 text-cream-50 focus:border-gold-500 outline-none transition-colors placeholder-transparent peer" id="name" placeholder="Name" />
-                  <label htmlFor="name" className="absolute left-0 -top-3.5 text-gold-500 text-xs uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-placeholder-shown:top-4 peer-focus:-top-3.5 peer-focus:text-gold-500 peer-focus:text-xs">Name</label>
-                </div>
-                <div className="group relative">
-                  <input type="email" className="w-full bg-transparent border-b border-white/20 py-4 text-cream-50 focus:border-gold-500 outline-none transition-colors placeholder-transparent peer" id="email" placeholder="Email" />
-                  <label htmlFor="email" className="absolute left-0 -top-3.5 text-gold-500 text-xs uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-placeholder-shown:top-4 peer-focus:-top-3.5 peer-focus:text-gold-500 peer-focus:text-xs">Email</label>
-                </div>
-              </div>
-              
-              <div className="group relative">
-                <select className="w-full bg-transparent border-b border-white/20 py-4 text-cream-50 focus:border-gold-500 outline-none transition-colors appearance-none">
-                  <option className="bg-forest-950 text-white/60">Select Subject</option>
-                  <option className="bg-forest-950">General Inquiry</option>
-                  <option className="bg-forest-950">Reservation</option>
-                  <option className="bg-forest-950">Event Booking</option>
-                </select>
-                <div className="absolute right-0 top-4 pointer-events-none text-gold-500">
-                  <ArrowRight className="w-4 h-4 rotate-90" />
-                </div>
-              </div>
-
-              <div className="group relative">
-                <textarea rows={4} className="w-full bg-transparent border-b border-white/20 py-4 text-cream-50 focus:border-gold-500 outline-none transition-colors placeholder-transparent peer" id="message" placeholder="Message"></textarea>
-                <label htmlFor="message" className="absolute left-0 -top-3.5 text-gold-500 text-xs uppercase tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-placeholder-shown:top-4 peer-focus:-top-3.5 peer-focus:text-gold-500 peer-focus:text-xs">Message</label>
-              </div>
-
-              <button type="submit" className="group relative inline-flex items-center justify-center px-10 py-4 overflow-hidden transition-all border border-gold-500 text-gold-500 hover:text-forest-950 hover:bg-gold-500 w-full md:w-auto">
-                <span className="font-bold tracking-widest uppercase text-sm">Send Message</span>
-              </button>
-            </form>
-          </div>
-
+          </motion.div>
         </div>
       </div>
     </div>

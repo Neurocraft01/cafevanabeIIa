@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingContact from "@/components/FloatingContact";
+import Chatbot from "@/components/Chatbot";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,13 +31,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-forest-950 text-cream-50`}
+        className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-white text-black`}
       >
         <Navbar />
         <main className="min-h-screen">
           {children}
         </main>
         <FloatingContact />
+        <Chatbot />
         <Footer />
       </body>
     </html>

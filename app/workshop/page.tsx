@@ -1,163 +1,137 @@
-"use client";
+﻿"use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { Calendar, Clock, Users, ChefHat, ArrowRight } from "lucide-react";
 import Image from "next/image";
-import { ArrowRight, Check } from "lucide-react";
-
-const spaces = [
-  {
-    title: "The Private Dining Room",
-    description: "An intimate sanctuary for exclusive gatherings. Featuring a custom mahogany table, ambient lighting, and a dedicated service team.",
-    capacity: "Up to 20 Guests",
-    features: ["Custom Menu Design", "Wine Pairing", "Private Entrance"],
-    image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2000&auto=format&fit=crop"
-  },
-  {
-    title: "The Artisan Workshop",
-    description: "A creative haven designed for hands-on experiences. Perfect for cooking masterclasses, art workshops, and team building.",
-    capacity: "Up to 15 Guests",
-    features: ["Chef's Station", "Art Supplies", "Projector & Screen"],
-    image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=2000&auto=format&fit=crop"
-  },
-  {
-    title: "The Grand Hall",
-    description: "Our signature venue for momentous celebrations. High ceilings, panoramic garden views, and flexible layout options.",
-    capacity: "Up to 80 Guests",
-    features: ["Full Bar Access", "Live Music Stage", "Outdoor Terrace"],
-    image: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2000&auto=format&fit=crop"
-  }
-];
 
 export default function WorkshopPage() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-
   return (
-    <div ref={containerRef} className="bg-forest-950 min-h-screen text-cream-50 selection:bg-gold-500/30">
-      {/* Hero Section */}
-      <section className="relative h-[90vh] overflow-hidden flex items-center justify-center">
-        <motion.div 
-          style={{ y }}
-          className="absolute inset-0 z-0"
-        >
-          <Image
-            src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2000&auto=format&fit=crop"
-            alt="Events Hero"
+    <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
+      
+      {/* HERO */}
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden bg-gray-900">
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=2000&auto=format&fit=crop"
+            alt="Workshop Hero"
             fill
             className="object-cover opacity-40"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-forest-950/30 via-forest-950/60 to-forest-950" />
-        </motion.div>
-
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <motion.span 
+        </div>
+        <div className="relative z-10 text-center px-4 text-white">
+          <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="block text-gold-500 text-sm md:text-base uppercase tracking-[0.3em] mb-6 font-medium"
+            className="text-5xl md:text-7xl font-serif font-bold mb-4"
           >
-            Gather & Create
-          </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-5xl md:text-8xl font-serif font-bold mb-8 leading-tight"
-          >
-            Celebrate Life's <br />
-            <span className="italic text-gold-500">Masterpieces</span>
+            Culinary <span className="italic font-light">Workshops</span>
           </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl text-cream-100/80 font-light max-w-2xl mx-auto leading-relaxed"
-          >
-            From intimate workshops to grand celebrations, our spaces are designed to transform your moments into lasting memories.
-          </motion.p>
+          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base">
+            Master the art of cooking with our expert chefs
+          </p>
         </div>
       </section>
 
-      {/* Spaces Section */}
-      <section className="py-32 px-4 md:px-12 relative z-10 bg-forest-950">
-        <div className="max-w-7xl mx-auto space-y-32">
-          {spaces.map((space, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 md:gap-20 items-center`}
-            >
-              <div className="w-full md:w-1/2 relative h-[500px] group overflow-hidden rounded-sm">
-                <Image
-                  src={space.image}
-                  alt={space.title}
-                  fill
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-forest-950/20 group-hover:bg-transparent transition-colors duration-500" />
-              </div>
-              
-              <div className="w-full md:w-1/2 space-y-8">
-                <div className="space-y-4">
-                  <span className="text-gold-500 uppercase tracking-widest text-sm font-medium">{space.capacity}</span>
-                  <h2 className="text-4xl md:text-5xl font-serif font-bold text-cream-50">{space.title}</h2>
-                  <p className="text-cream-100/70 text-lg leading-relaxed font-light">{space.description}</p>
+      {/* WORKSHOPS LIST */}
+      <section className="py-24 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 gap-12">
+            {[
+              {
+                title: "Pasta Making Masterclass",
+                date: "Oct 15, 2023",
+                time: "10:00 AM - 2:00 PM",
+                price: "$120",
+                image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=1000&auto=format&fit=crop",
+                description: "Learn the secrets of handmade pasta from dough to sauce. Includes lunch and wine pairing.",
+                level: "Beginner"
+              },
+              {
+                title: "Advanced Pastry Techniques",
+                date: "Oct 22, 2023",
+                time: "9:00 AM - 3:00 PM",
+                price: "$180",
+                image: "https://images.unsplash.com/photo-1587241321921-91a834d6d191?q=80&w=1000&auto=format&fit=crop",
+                description: "Dive deep into the world of French pastries. Master croissants, eclairs, and macarons.",
+                level: "Intermediate"
+              },
+              {
+                title: "Sustainable Seafood",
+                date: "Nov 05, 2023",
+                time: "11:00 AM - 2:00 PM",
+                price: "$150",
+                image: "https://images.unsplash.com/photo-1534939561126-855b8675edd7?q=80&w=1000&auto=format&fit=crop",
+                description: "Learn how to select, fillet, and prepare sustainable seafood dishes with seasonal ingredients.",
+                level: "All Levels"
+              }
+            ].map((workshop, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="group flex flex-col md:flex-row bg-white border border-gray-100 hover:border-black transition-all duration-300"
+              >
+                <div className="relative w-full md:w-1/3 h-64 md:h-auto overflow-hidden bg-gray-100">
+                  <Image 
+                    src={workshop.image}
+                    alt={workshop.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute top-4 left-4 bg-white px-3 py-1 text-xs font-bold uppercase tracking-widest">
+                    {workshop.level}
+                  </div>
                 </div>
                 
-                <ul className="space-y-4">
-                  {space.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-4 text-cream-100/90">
-                      <span className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-gold-500 border border-white/10">
-                        <Check className="w-4 h-4" />
-                      </span>
-                      <span className="font-light tracking-wide">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button className="group flex items-center gap-3 text-gold-500 uppercase tracking-widest text-sm font-bold hover:text-gold-400 transition-colors mt-8">
-                  Book This Space
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-2" />
-                </button>
-              </div>
-            </motion.div>
-          ))}
+                <div className="flex-1 p-8 md:p-12 flex flex-col justify-center">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-6">
+                    <div>
+                      <h3 className="text-2xl font-serif font-bold mb-2 group-hover:text-gray-600 transition-colors">{workshop.title}</h3>
+                      <p className="text-gray-500 leading-relaxed max-w-xl">{workshop.description}</p>
+                    </div>
+                    <span className="text-2xl font-bold">{workshop.price}</span>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+                    <div className="flex items-center gap-3 text-gray-500 text-sm">
+                      <Calendar size={16} />
+                      <span>{workshop.date}</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-500 text-sm">
+                      <Clock size={16} />
+                      <span>{workshop.time}</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-500 text-sm">
+                      <ChefHat size={16} />
+                      <span>Expert Chef</span>
+                    </div>
+                  </div>
+                  
+                  <button className="self-start px-8 py-3 bg-black text-white text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors flex items-center gap-2">
+                    Reserve Spot <ArrowRight size={14} />
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gold-500/5" />
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto space-y-8"
-          >
-            <h2 className="text-5xl md:text-7xl font-serif font-bold text-cream-50">
-              Plan Your <span className="text-gold-500 italic">Event</span>
-            </h2>
-            <p className="text-xl text-cream-100/70 font-light">
-              Let our dedicated events team help you curate the perfect experience.
-            </p>
-            <button className="bg-gold-500 text-forest-950 px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-gold-400 transition-all hover:scale-105 shadow-lg shadow-gold-500/20">
-              Inquire Now
-            </button>
-          </motion.div>
+      {/* CTA */}
+      <section className="bg-gray-50 py-24 px-4 text-center">
+        <div className="container mx-auto max-w-2xl">
+          <h2 className="text-3xl font-serif font-bold mb-6">Private Workshops</h2>
+          <p className="text-gray-600 mb-8 leading-relaxed">
+            Looking for a unique team building event or private celebration? We offer customized private workshops for groups of 8-20 people.
+          </p>
+          <button className="px-8 py-4 border border-black text-black text-xs font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors">
+            Inquire Now
+          </button>
         </div>
       </section>
+
     </div>
   );
 }

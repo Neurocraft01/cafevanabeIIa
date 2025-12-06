@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -45,128 +45,155 @@ export default function MenuPage() {
   }, [activeCategory, filteredItems]);
 
   return (
-    <div className="min-h-screen bg-forest-950 text-cream-50 selection:bg-gold-500 selection:text-forest-950">
+    <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
       {/* HEADER */}
-      <div className="relative h-[40vh] flex items-center justify-center overflow-hidden">
-        <Image 
-          src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2000&auto=format&fit=crop"
-          alt="Menu Header"
-          fill
-          className="object-cover brightness-[0.3]"
-        />
-        <div className="relative z-10 text-center">
-          <h1 className="text-6xl md:text-8xl font-serif font-medium text-cream-50 mb-4">Our <span className="italic text-gold-500">Menu</span></h1>
-          <p className="text-gold-500 uppercase tracking-[0.3em] text-xs font-bold">Season 2024 • Chef's Selection</p>
+      <header className="relative h-[40vh] flex items-center justify-center overflow-hidden bg-gray-50">
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2000&auto=format&fit=crop"
+            alt="Menu Header"
+            fill
+            className="object-cover opacity-20"
+            priority
+          />
         </div>
-      </div>
+        <div className="relative z-10 text-center px-4">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-5xl md:text-7xl font-serif font-bold mb-4"
+          >
+            Our <span className="italic font-light">Menu</span>
+          </motion.h1>
+          <p className="text-gray-500 font-light tracking-widest uppercase text-xs md:text-sm">
+            Curated flavors for the mindful palate
+          </p>
+        </div>
+      </header>
 
-      <div className="container mx-auto px-4 md:px-6 py-20 max-w-5xl">
-        
-        {/* CONTROLS */}
-        <div className="mb-16 space-y-8">
-          {/* Search & Filters */}
-          <div className="flex flex-col md:flex-row justify-between items-end border-b border-white/10 pb-8 gap-6">
-            <div className="w-full md:w-1/3">
-              <div className="relative group">
-                <Search className="absolute left-0 top-1/2 transform -translate-y-1/2 text-gold-500 group-focus-within:text-cream-50 transition-colors" size={20} />
-                <input
-                  type="text"
-                  placeholder="Search dishes..."
+      {/* CONTROLS SECTION */}
+      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            
+            {/* Categories */}
+            <div className="flex overflow-x-auto pb-2 md:pb-0 gap-6 w-full md:w-auto scrollbar-hide">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={clsx(
+                    "whitespace-nowrap text-sm font-bold uppercase tracking-widest transition-colors relative group",
+                    activeCategory === cat ? "text-black" : "text-gray-400 hover:text-gray-600"
+                  )}
+                >
+                  {cat}
+                  {activeCategory === cat && (
+                    <motion.div layoutId="underline" className="absolute -bottom-2 left-0 right-0 h-[2px] bg-black" />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Search & Filters */}
+            <div className="flex items-center gap-4 w-full md:w-auto">
+              <div className="relative flex-1 md:w-64">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                <input 
+                  type="text" 
+                  placeholder="Search dishes..." 
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-8 pr-4 py-2 bg-transparent border-b border-white/10 focus:border-gold-500 focus:outline-none text-cream-50 placeholder:text-white/20 transition-colors font-serif italic text-lg"
+                  className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm focus:outline-none focus:border-black transition-colors"
                 />
               </div>
+              
+              <div className="flex gap-2">
+                <button 
+                  onClick={() => toggleFilter('veg')}
+                  className={clsx("p-2 rounded-full border transition-colors", filters.veg ? "bg-green-50 border-green-500 text-green-700" : "border-gray-200 text-gray-400 hover:border-gray-400")}
+                  title="Vegetarian Only"
+                >
+                  <Leaf size={18} />
+                </button>
+                <button 
+                  onClick={() => toggleFilter('chefSpecial')}
+                  className={clsx("p-2 rounded-full border transition-colors", filters.chefSpecial ? "bg-orange-50 border-orange-500 text-orange-700" : "border-gray-200 text-gray-400 hover:border-gray-400")}
+                  title="Chef's Specials"
+                >
+                  <Flame size={18} />
+                </button>
+                <a 
+                  href="/Cafe new menu  (2).pdf" 
+                  download
+                  className="p-2 rounded-full border border-gray-200 text-gray-400 hover:border-black hover:text-black transition-colors"
+                  title="Download Menu PDF"
+                >
+                  <Download size={18} />
+                </a>
+              </div>
             </div>
-
-            <div className="flex gap-6 text-xs uppercase tracking-widest font-bold text-sage-300">
-              <button onClick={() => toggleFilter("veg")} className={clsx("hover:text-gold-500 transition-colors flex items-center gap-2", filters.veg && "text-gold-500")}>
-                <div className={clsx("w-3 h-3 border border-current", filters.veg && "bg-gold-500")}></div> Veg
-              </button>
-              <button onClick={() => toggleFilter("chefSpecial")} className={clsx("hover:text-gold-500 transition-colors flex items-center gap-2", filters.chefSpecial && "text-gold-500")}>
-                <div className={clsx("w-3 h-3 border border-current", filters.chefSpecial && "bg-gold-500")}></div> Chef's Special
-              </button>
-            </div>
-          </div>
-
-          {/* Categories */}
-          <div className="flex flex-wrap justify-center gap-8 md:gap-12">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={clsx(
-                  "text-sm uppercase tracking-[0.2em] transition-all relative py-2",
-                  activeCategory === cat ? "text-gold-500 font-bold" : "text-sage-400 hover:text-cream-50"
-                )}
-              >
-                {cat}
-                {activeCategory === cat && (
-                  <motion.div layoutId="activeCat" className="absolute bottom-0 left-0 w-full h-[1px] bg-gold-500" />
-                )}
-              </button>
-            ))}
           </div>
         </div>
+      </div>
 
-        {/* MENU LIST */}
-        <div className="space-y-20">
-          {Object.entries(groupedItems).map(([category, items]) => (
-            items.length > 0 && (
-              <motion.div 
-                key={category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <h2 className="text-3xl font-serif text-gold-500 mb-10 text-center italic decoration-gold-500/30 underline-offset-8 decoration-1">
-                  — {category} —
-                </h2>
-                
-                <div className="grid grid-cols-1 gap-x-16 gap-y-12">
-                  {items.map((item) => (
-                    <div key={item.id} className="group">
-                      <div className="flex items-baseline justify-between mb-2 relative">
-                        <h3 className="text-xl md:text-2xl font-serif text-cream-50 group-hover:text-gold-400 transition-colors pr-4 bg-forest-950 z-10 relative">
-                          {item.name}
-                        </h3>
-                        <div className="flex-grow border-b border-dotted border-white/20 absolute bottom-2 w-full"></div>
-                        <span className="text-xl font-serif text-gold-500 pl-4 bg-forest-950 z-10 relative">₹{item.price}</span>
-                      </div>
-                      
-                      <div className="flex justify-between items-start">
-                        <p className="text-sage-300 font-light text-sm md:text-base max-w-2xl leading-relaxed">
-                          {item.description || "A classic preparation with our signature twist."}
-                        </p>
-                        <div className="flex gap-2 mt-1">
-                           {item.isVeg && <Leaf size={14} className="text-green-400" />}
-                           {item.isChefSpecial && <Flame size={14} className="text-gold-500" />}
-                        </div>
+      {/* MENU GRID */}
+      <div className="container mx-auto px-4 py-16 min-h-[60vh]">
+        {Object.keys(groupedItems).length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-gray-400 text-lg">No dishes found matching your criteria.</p>
+            <button 
+              onClick={() => {setSearchQuery(""); setFilters({veg: false, chefSpecial: false, under200: false}); setActiveCategory("All");}}
+              className="mt-4 text-black underline hover:text-gray-600"
+            >
+              Clear all filters
+            </button>
+          </div>
+        ) : (
+          Object.entries(groupedItems).map(([category, items]) => (
+            <div key={category} className="mb-16">
+              <h2 className="text-3xl font-serif font-bold mb-8 border-l-4 border-black pl-4">{category}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {items.map((item) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="group bg-white border border-gray-100 hover:border-black transition-all duration-300 flex flex-col"
+                  >
+                    <div className="relative h-64 overflow-hidden bg-gray-100">
+                      <Image 
+                        src={item.image || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop"} 
+                        alt={item.name} 
+                        fill 
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute top-4 right-4 flex flex-col gap-2">
+                        {item.isVeg && <span className="bg-white/90 backdrop-blur p-1.5 rounded-full text-green-600 shadow-sm"><Leaf size={14} /></span>}
+                        {item.isChefSpecial && <span className="bg-white/90 backdrop-blur p-1.5 rounded-full text-orange-500 shadow-sm"><Flame size={14} /></span>}
                       </div>
                     </div>
-                  ))}
-                </div>
-              </motion.div>
-            )
-          ))}
-
-          {filteredItems.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-xl text-sage-400 font-serif italic">"Simplicity is the ultimate sophistication."</p>
-              <p className="text-sm text-sage-500 mt-2 uppercase tracking-widest">No items match your search.</p>
+                    
+                    <div className="p-6 flex-1 flex flex-col">
+                      <div className="flex justify-between items-start mb-2">
+                        <h3 className="text-xl font-serif font-bold group-hover:text-gray-600 transition-colors">{item.name}</h3>
+                        <span className="text-lg font-bold">${item.price}</span>
+                      </div>
+                      <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">{item.description}</p>
+                      <button className="w-full py-3 border border-black text-black font-bold uppercase tracking-widest text-xs hover:bg-black hover:text-white transition-colors flex items-center justify-center gap-2 group-hover:gap-3">
+                        Add to Order <ChevronRight size={14} />
+                      </button>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          )}
-        </div>
-
-        <div className="mt-32 text-center border-t border-white/10 pt-12">
-           <p className="text-sage-400 text-sm font-light italic">
-             * All prices are exclusive of government taxes. Service charge of 10% is discretionary.
-           </p>
-        </div>
-
+          ))
+        )}
       </div>
+
     </div>
   );
 }

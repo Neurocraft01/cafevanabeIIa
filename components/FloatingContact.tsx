@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Phone, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
@@ -27,7 +27,7 @@ export default function FloatingContact() {
         animate={{ scale: 1 }}
         transition={{ delay: 0.1 }}
         whileHover={{ scale: 1.1 }}
-        className="w-14 h-14 bg-gold-500 rounded-full flex items-center justify-center text-forest-950 shadow-lg hover:shadow-gold-500/50 transition-shadow cursor-pointer"
+        className="w-14 h-14 bg-black rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-black/50 transition-shadow cursor-pointer"
         title="Call Us"
       >
         <Phone size={24} />
