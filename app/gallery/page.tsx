@@ -6,35 +6,43 @@ import { useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const galleryImages = [
-  { src: "/image 1.jpg", category: "Interior" },
-  { src: "/image 2.jpg", category: "Food" },
-  { src: "/image 3.jpg", category: "Interior" },
-  { src: "/image 4.jpg", category: "Food" },
-  { src: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000&auto=format&fit=crop", category: "Interior" },
-  { src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop", category: "Food" },
-  { src: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop", category: "Interior" },
-  { src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1000&auto=format&fit=crop", category: "Food" },
-  { src: "https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?q=80&w=1000&auto=format&fit=crop", category: "Interior" },
-  { src: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1000&auto=format&fit=crop", category: "Food" },
-  { src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop", category: "Interior" },
-  { src: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?q=80&w=1000&auto=format&fit=crop", category: "Food" },
-  { src: "https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=1000&auto=format&fit=crop", category: "Events" },
+  { src: "/image 1.jpg", category: "Cafe" },
+  { src: "/image 2.jpg", category: "Dishes" },
+  { src: "/image 3.jpg", category: "Cafe" },
+  { src: "/image 4.jpg", category: "Dishes" },
+  { src: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000&auto=format&fit=crop", category: "Cafe" },
+  { src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop", category: "Dishes" },
+  { src: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000&auto=format&fit=crop", category: "Cafe" },
+  { src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1000&auto=format&fit=crop", category: "Dishes" },
+  { src: "https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?q=80&w=1000&auto=format&fit=crop", category: "Celebration" },
+  { src: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1000&auto=format&fit=crop", category: "Dishes" },
+  { src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1000&auto=format&fit=crop", category: "Co-working" },
+  { src: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?q=80&w=1000&auto=format&fit=crop", category: "Dishes" },
+  { src: "https://images.unsplash.com/photo-1544148103-0773bf10d330?q=80&w=1000&auto=format&fit=crop", category: "Celebration" },
+  { src: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop", category: "Co-working" },
 ];
+
+const categories = ["All", "Celebration", "Cafe", "Co-working", "Dishes"];
 
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredImages = activeCategory === "All" 
+    ? galleryImages 
+    : galleryImages.filter(img => img.category === activeCategory);
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedImage !== null) {
-      setSelectedImage((selectedImage + 1) % galleryImages.length);
+      setSelectedImage((selectedImage + 1) % filteredImages.length);
     }
   };
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedImage !== null) {
-      setSelectedImage((selectedImage - 1 + galleryImages.length) % galleryImages.length);
+      setSelectedImage((selectedImage - 1 + filteredImages.length) % filteredImages.length);
     }
   };
 
@@ -66,17 +74,37 @@ export default function GalleryPage() {
         </div>
       </section>
 
+      {/* CATEGORY TABS */}
+      <section className="pt-16 pb-8 px-4">
+        <div className="flex flex-wrap justify-center gap-4">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest transition-all duration-300 ${
+                activeCategory === cat 
+                  ? "bg-black text-white" 
+                  : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </section>
+
       {/* GALLERY GRID */}
-      <section className="py-24 px-4">
+      <section className="pb-24 px-4">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {galleryImages.map((img, index) => (
+            {filteredImages.map((img, index) => (
               <motion.div 
                 key={index}
+                layout
                 initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
                 className="relative aspect-square group cursor-pointer overflow-hidden bg-gray-100"
                 onClick={() => setSelectedImage(index)}
               >

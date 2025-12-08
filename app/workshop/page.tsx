@@ -9,27 +9,67 @@ export default function WorkshopPage() {
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
       {/* HERO */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-gray-900">
+      <section className="relative h-[75vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-900 via-pink-800 to-rose-900">
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=2000&auto=format&fit=crop"
             alt="Workshop Hero"
             fill
-            className="object-cover opacity-40"
+            className="object-cover opacity-25 mix-blend-overlay"
             priority
           />
         </div>
-        <div className="relative z-10 text-center px-4 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] z-0"></div>
+        <div className="relative z-10 text-center px-4 text-white max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="mb-8"
+          >
+            <span className="inline-flex items-center gap-3 px-8 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-sm uppercase tracking-[0.3em] font-bold">
+              <ChefHat size={20} className="text-pink-300" />
+              Learn • Create • Celebrate
+            </span>
+          </motion.div>
           <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-6xl md:text-8xl font-serif font-bold mb-6 leading-tight"
+          >
+            Workshops <span className="italic font-light bg-gradient-to-r from-pink-300 via-purple-300 to-rose-300 bg-clip-text text-transparent">&</span> Celebrations
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="text-gray-200 font-light text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-10"
+          >
+            Master culinary arts with expert chefs • Celebrate life's special moments in our beautiful space
+          </motion.p>
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-6"
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="flex flex-wrap items-center justify-center gap-4"
           >
-            Workshops <span className="italic font-light">&</span> Celebrations
-          </motion.h1>
-          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
-            Master culinary arts & celebrate special moments
-          </p>
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20">
+              <Calendar className="text-pink-300" size={18} />
+              <span className="text-sm font-semibold">Weekly Classes</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20">
+              <PartyPopper className="text-purple-300" size={18} />
+              <span className="text-sm font-semibold">Private Events</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-3 rounded-full border border-white/20">
+              <Users className="text-rose-300" size={18} />
+              <span className="text-sm font-semibold">Small Groups</span>
+            </div>
+          </motion.div>
+        </div>
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-20">
+          <div className="w-[2px] h-16 bg-gradient-to-b from-white/80 to-transparent"></div>
         </div>
       </section>
 

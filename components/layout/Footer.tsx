@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Instagram, Facebook, Twitter, MapPin, Phone, Mail } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   const pathname = usePathname();
@@ -16,9 +17,16 @@ export default function Footer() {
           
           {/* Brand - Large */}
           <div className="md:col-span-4 space-y-6">
-            <h3 className="text-4xl md:text-5xl font-serif font-bold tracking-tighter">
-              VANA<span className="italic font-light">BELLA</span>
-            </h3>
+            <div className="h-14 overflow-hidden">
+              <Image 
+                src="/logo.jpg" 
+                alt="Cafe VanaBella Logo" 
+                width={160} 
+                height={56} 
+                className="object-cover object-center scale-125"
+                style={{ objectPosition: 'center 50%' }}
+              />
+            </div>
             <p className="text-sm leading-relaxed text-gray-500 font-light max-w-xs">
               Your Urban Oasis. Where nature meets flavor in a symphony of taste and tranquility.
             </p>

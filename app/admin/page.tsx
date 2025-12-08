@@ -154,9 +154,18 @@ export default function AdminPage() {
       
       {/* SIDEBAR */}
       <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 transform transition-transform duration-300 lg:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="p-8 border-b border-gray-100">
-          <h2 className="text-2xl font-serif font-bold">VANA<span className="italic font-light">BELLA</span></h2>
-          <p className="text-xs text-gray-400 mt-1 uppercase tracking-widest">Admin Dashboard</p>
+        <div className="p-6 border-b border-gray-100">
+          <div className="h-12 overflow-hidden">
+            <Image 
+              src="/logo.jpg" 
+              alt="Cafe VanaBella Logo" 
+              width={140} 
+              height={48} 
+              className="object-cover object-center scale-125"
+              style={{ objectPosition: 'center 50%' }}
+            />
+          </div>
+          <p className="text-xs text-gray-400 mt-3 uppercase tracking-widest">Admin Dashboard</p>
         </div>
 
         <nav className="p-4 space-y-2">

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ChefHat, Award, Users, Clock } from "lucide-react";
+import { ChefHat, Award, Users, Clock, Star } from "lucide-react";
 
 export default function AboutPage() {
   return (
@@ -142,6 +142,59 @@ export default function AboutPage() {
                     <h3 className="text-white text-2xl font-serif font-bold">{member.name}</h3>
                     <p className="text-gray-300 text-sm uppercase tracking-widest">{member.role}</p>
                   </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS SECTION */}
+      <section className="py-24 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-serif font-bold mb-4">Guest <span className="italic text-gray-500">Reviews</span></h2>
+            <p className="text-gray-500">What our community says about us.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: "Priya Sharma",
+                role: "Food Blogger",
+                review: "The ambiance is simply magical. It feels like dining in a forest! The pasta was authentic and the coffee is the best in Pimple Nilakh.",
+                rating: 5
+              },
+              {
+                name: "Rahul Deshmukh",
+                role: "Coworking Member",
+                review: "I've been working from here for a month. The WiFi is fast, the seating is comfortable, and the staff is incredibly polite. Highly recommended!",
+                rating: 5
+              },
+              {
+                name: "Ananya Patel",
+                role: "Regular Guest",
+                review: "Celebrated my birthday here last week. The decoration was beautiful and the cake was delicious. Thank you VanaBella for making it special!",
+                rating: 4
+              }
+            ].map((review, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white p-8 shadow-sm border border-gray-100"
+              >
+                <div className="flex gap-1 mb-4 text-yellow-400">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} fill={i < review.rating ? "currentColor" : "none"} className={i < review.rating ? "" : "text-gray-300"} />
+                  ))}
+                </div>
+                <p className="text-gray-600 italic mb-6">"{review.review}"</p>
+                <div>
+                  <h4 className="font-bold text-sm uppercase tracking-widest">{review.name}</h4>
+                  <span className="text-xs text-gray-400">{review.role}</span>
                 </div>
               </motion.div>
             ))}

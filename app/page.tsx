@@ -1,13 +1,21 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { ArrowRight, Star, Coffee, Wifi, Calendar, Leaf, ChefHat, Utensils, MapPin, Clock, Phone } from "lucide-react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+
+const heroImages = [
+  "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2000&auto=format&fit=crop", // Empty table/Ambience
+  "https://images.unsplash.com/photo-1530103862676-de3c9a59af38?q=80&w=2000&auto=format&fit=crop", // Bday celebration
+  "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2000&auto=format&fit=crop", // Dishes
+  "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2000&auto=format&fit=crop", // Book a table
+];
 
 export default function Home() {
   const containerRef = useRef(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -16,19 +24,37 @@ export default function Home() {
   const yHero = useTransform(scrollYProgress, [0, 0.2], [0, 300]);
   const opacityHero = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div ref={containerRef} className="bg-white text-black overflow-x-hidden selection:bg-black selection:text-white">
       
       {/* HERO SECTION - MINIMALIST */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0">
-          <Image 
-            src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2000&auto=format&fit=crop"
-            alt="Luxury Interior"
-            fill
-            className="object-cover opacity-20"
-            priority
-          />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentImageIndex}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5 }}
+              className="absolute inset-0"
+            >
+              <Image 
+                src={heroImages[currentImageIndex]}
+                alt="Hero Background"
+                fill
+                className="object-cover opacity-30"
+                priority
+              />
+            </motion.div>
+          </AnimatePresence>
         </motion.div>
 
         <div className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto">
@@ -36,15 +62,24 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="py-12 md:py-20"
+            className="py-12 md:py-20 flex flex-col items-center"
           >
             <h2 className="text-black uppercase tracking-[0.5em] text-xs md:text-sm mb-8 font-medium">
               Est. 2024 · Pimple Nilakh, Pune
             </h2>
-            <h1 className="text-7xl md:text-9xl font-serif font-bold text-black mb-6 leading-none tracking-tighter">
-              VANA<span className="italic font-light">BELLA</span>
-            </h1>
-            <p className="text-lg md:text-xl text-gray-600 max-w-xl mx-auto font-light italic font-serif tracking-wide">
+            
+            {/* Logo Image Replacement */}
+            <div className="relative w-64 h-24 md:w-96 md:h-32 mb-6">
+              <Image 
+                src="/logo.jpg" 
+                alt="VanaBella Logo" 
+                fill
+                className="object-contain object-center scale-150"
+                priority
+              />
+            </div>
+
+            <p className="text-lg md:text-xl text-gray-600 max-w-xl mx-auto font-light italic font-serif tracking-wide mt-4">
               "Where the forest meets the fork."
             </p>
           </motion.div>
@@ -55,15 +90,37 @@ export default function Home() {
             transition={{ delay: 0.5, duration: 1 }}
             className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6"
           >
-            <Link href="/menu" className="group relative px-8 py-4 bg-black text-white overflow-hidden">
-              <span className="relative z-10 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
-                Explore Menu <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </span>
-              <div className="absolute inset-0 bg-gray-800 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
-            </Link>
-            <Link href="/contact" className="group px-8 py-4 border border-black text-black hover:bg-black hover:text-white transition-colors duration-300">
-              <span className="font-bold uppercase tracking-widest text-xs">Book a Table</span>
-            </Link>
+            <motion.div 
+              whileHover={{ x: 5 }} 
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <Link href="/menu" className="group relative block">
+                <div className="px-12 py-5 bg-black text-white border-4 border-black transition-all duration-200 group-hover:translate-x-2 group-hover:translate-y-2">
+                  <span className="font-bold uppercase tracking-[0.2em] text-xs flex items-center gap-4">
+                    View Menu
+                    <span className="text-xl group-hover:translate-x-2 transition-transform duration-200">→</span>
+                  </span>
+                </div>
+                <div className="absolute inset-0 bg-gray-200 border-4 border-black -z-10"></div>
+              </Link>
+            </motion.div>
+            
+            <motion.div 
+              whileHover={{ x: -5 }} 
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+            >
+              <Link href="/celebration" className="group relative block">
+                <div className="px-12 py-5 bg-white text-black border-4 border-black transition-all duration-200 group-hover:-translate-x-2 group-hover:translate-y-2">
+                  <span className="font-bold uppercase tracking-[0.2em] text-xs flex items-center gap-4">
+                    Book Bday Spot
+                    <span className="text-xl group-hover:-translate-x-2 transition-transform duration-200">🎉</span>
+                  </span>
+                </div>
+                <div className="absolute inset-0 bg-gray-200 border-4 border-black -z-10"></div>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -86,12 +143,17 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2 }}
-              className="group p-8 border border-gray-100 hover:border-black transition-colors duration-500 text-center"
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="group p-8 border-2 border-gray-100 hover:border-black hover:shadow-2xl transition-all duration-300 text-center cursor-pointer"
             >
-              <div className="mb-6 inline-flex p-4 bg-gray-50 group-hover:bg-black group-hover:text-white transition-colors duration-500 rounded-full">
-                <feature.icon size={24} />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-3">{feature.title}</h3>
+              <motion.div 
+                whileHover={{ rotate: 360, scale: 1.1 }}
+                transition={{ duration: 0.6 }}
+                className="mb-6 inline-flex p-5 bg-gray-50 group-hover:bg-black group-hover:text-white transition-colors duration-300 rounded-full shadow-md"
+              >
+                <feature.icon size={28} />
+              </motion.div>
+              <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-gray-700 transition-colors">{feature.title}</h3>
               <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
             </motion.div>
           ))}
@@ -158,10 +220,10 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
           {[
-            { name: "Avocado Toast Supreme", price: "$14", desc: "Sourdough, poached egg, chili flakes, microgreens." },
-            { name: "Truffle Mushroom Risotto", price: "$22", desc: "Arborio rice, wild mushrooms, parmesan crisp." },
-            { name: "VanaBella Acai Bowl", price: "$16", desc: "Organic acai, house granola, seasonal berries, honey." },
-            { name: "Smoked Salmon Bagel", price: "$18", desc: "Cream cheese, capers, red onion, dill." }
+            { name: "Avocado Toast Supreme", price: "₹499", desc: "Sourdough, poached egg, chili flakes, microgreens." },
+            { name: "Truffle Mushroom Risotto", price: "₹649", desc: "Arborio rice, wild mushrooms, parmesan crisp." },
+            { name: "VanaBella Acai Bowl", price: "₹449", desc: "Organic acai, house granola, seasonal berries, honey." },
+            { name: "Smoked Salmon Bagel", price: "₹549", desc: "Cream cheese, capers, red onion, dill." }
           ].map((item, idx) => (
             <div key={idx} className="group flex justify-between items-baseline border-b border-gray-200 pb-4 hover:border-black transition-colors">
               <div className="flex-1">

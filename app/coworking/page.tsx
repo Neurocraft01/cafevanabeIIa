@@ -1,10 +1,19 @@
 ﻿"use client";
 
-import { motion } from "framer-motion";
-import { Wifi, Coffee, Printer, Lock, Zap, Calendar } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Wifi, Coffee, Printer, Lock, Zap, Calendar, X } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
+
+const coworkingImages = [
+  { src: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop", title: "Open Workspace", desc: "Bright and airy open seating area." },
+  { src: "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?q=80&w=1000&auto=format&fit=crop", title: "Meeting Room", desc: "Fully equipped meeting room for teams." },
+  { src: "https://images.unsplash.com/photo-1504384308090-c54be3855833?q=80&w=1000&auto=format&fit=crop", title: "Private Desk", desc: "Dedicated desk for focused work." },
+];
 
 export default function CoworkingPage() {
+  const [selectedImage, setSelectedImage] = useState<typeof coworkingImages[0] | null>(null);
+
   return (
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
@@ -66,8 +75,70 @@ export default function CoworkingPage() {
         </div>
       </section>
 
+      {/* GALLERY PREVIEW */}
+      <section className="py-12 px-4 bg-gray-50">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-3xl font-serif font-bold mb-8 text-center">Our Space</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {coworkingImages.map((img, index) => (
+              <motion.div 
+                key={index}
+                whileHover={{ scale: 1.02 }}
+                className="relative h-64 cursor-pointer overflow-hidden rounded-lg shadow-md"
+                onClick={() => setSelectedImage(img)}
+              >
+                <Image 
+                  src={img.src} 
+                  alt={img.title} 
+                  fill 
+                  className="object-cover transition-transform duration-500 hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/20 hover:bg-black/40 transition-colors flex items-end p-6">
+                  <span className="text-white font-bold uppercase tracking-widest">{img.title}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* LIGHTBOX */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+            onClick={() => setSelectedImage(null)}
+          >
+            <button 
+              className="absolute top-4 right-4 text-white hover:text-gray-300"
+              onClick={() => setSelectedImage(null)}
+            >
+              <X size={32} />
+            </button>
+            <div 
+              className="bg-white p-4 rounded-lg max-w-3xl w-full" 
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative h-[60vh] w-full mb-4">
+                <Image 
+                  src={selectedImage.src} 
+                  alt={selectedImage.title} 
+                  fill 
+                  className="object-cover rounded"
+                />
+              </div>
+              <h3 className="text-2xl font-bold mb-2">{selectedImage.title}</h3>
+              <p className="text-gray-600">{selectedImage.desc}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* PRICING */}
-      <section className="bg-gray-50 py-24 px-4">
+      <section className="bg-white py-24 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-serif font-bold mb-4">Membership Plans</h2>
@@ -128,6 +199,149 @@ export default function CoworkingPage() {
                 </button>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ADDITIONAL AMENITIES SECTION */}
+      <section className="py-24 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-serif font-bold mb-4">Why Choose <span className="italic text-gray-500">VanaBella</span> Workspace?</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Experience the perfect blend of productivity and comfort in our thoughtfully designed space.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
+                <Coffee size={24} className="text-black" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3">Premium Coffee Bar</h3>
+              <p className="text-gray-600 leading-relaxed">Unlimited access to our specialty coffee bar featuring artisanal blends, fresh pastries, and healthy snacks throughout the day.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
+                <Wifi size={24} className="text-black" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3">Blazing Fast Internet</h3>
+              <p className="text-gray-600 leading-relaxed">500 Mbps fiber optic connection with backup power ensuring uninterrupted connectivity for video calls and uploads.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
+                <Calendar size={24} className="text-black" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3">Meeting Rooms</h3>
+              <p className="text-gray-600 leading-relaxed">Book our professional meeting rooms equipped with projectors, whiteboards, and video conferencing for your client presentations.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
+                <Lock size={24} className="text-black" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3">Secure Environment</h3>
+              <p className="text-gray-600 leading-relaxed">24/7 CCTV monitoring, secure lockers, and dedicated parking spaces for members. Your safety is our priority.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
+                <Zap size={24} className="text-black" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3">Power Backup</h3>
+              <p className="text-gray-600 leading-relaxed">Never worry about power cuts. Our space runs on dual backup systems ensuring your work never stops.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
+                <Printer size={24} className="text-black" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3">Business Services</h3>
+              <p className="text-gray-600 leading-relaxed">Complimentary printing, scanning, and photocopying services. Professional stationery and office supplies available.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* COMMUNITY SECTION */}
+      <section className="bg-gray-900 text-white py-24 px-4">
+        <div className="container mx-auto max-w-4xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">Join Our <span className="italic text-gray-400">Community</span></h2>
+            <p className="text-gray-300 text-lg leading-relaxed mb-8">
+              VanaBella isn't just a workspace—it's a community of entrepreneurs, freelancers, designers, developers, and creatives. Network with like-minded professionals, attend our monthly meetups, and grow your business together.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+              <div>
+                <div className="text-5xl font-bold mb-2">50+</div>
+                <div className="text-gray-400 text-sm uppercase tracking-widest">Active Members</div>
+              </div>
+              <div>
+                <div className="text-5xl font-bold mb-2">200+</div>
+                <div className="text-gray-400 text-sm uppercase tracking-widest">Plants Around You</div>
+              </div>
+              <div>
+                <div className="text-5xl font-bold mb-2">12+</div>
+                <div className="text-gray-400 text-sm uppercase tracking-widest">Hours Daily Access</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className="py-24 px-4">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">Ready to Transform Your Work Life?</h2>
+          <p className="text-gray-600 text-lg mb-10">
+            Visit us for a free tour and trial day. Experience the VanaBella difference yourself.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" className="px-10 py-4 bg-black text-white font-bold uppercase tracking-widest hover:bg-gray-800 transition-colors">
+              Schedule a Tour
+            </a>
+            <a href="/reservations" className="px-10 py-4 border-2 border-black text-black font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all">
+              Book Trial Day
+            </a>
           </div>
         </div>
       </section>
