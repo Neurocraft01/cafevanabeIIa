@@ -43,7 +43,7 @@ export default function RootLayout({
       >
         <ConditionalLeaves />
         <Navbar />
-        <main className="min-h-screen relative z-10">
+        <main className="min-h-screen relative">
           {children}
         </main>
         <FloatingContact />

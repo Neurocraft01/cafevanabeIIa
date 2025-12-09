@@ -93,40 +93,66 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-8"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-y-0 right-0 w-full sm:w-80 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800 z-40 flex flex-col shadow-2xl"
           >
-            {navLinks.map((link, index) => (
+            {/* Mobile Menu Header */}
+            <div className="p-6 border-b border-white/10">
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-cinzel font-bold text-white">Menu</h2>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+            </div>
+
+            {/* Navigation Links */}
+            <div className="flex-1 overflow-y-auto py-8 px-6 space-y-2">
+              {navLinks.map((link, index) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05, type: "spring", damping: 20 }}
+                >
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={clsx(
+                      "block px-6 py-4 rounded-xl text-lg font-bold uppercase tracking-wide transition-all duration-300",
+                      pathname === link.href
+                        ? "bg-white text-emerald-900 shadow-lg"
+                        : "text-white hover:bg-white/10"
+                    )}
+                  >
+                    {link.name}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <div className="p-6 border-t border-white/10">
               <motion.div
-                key={link.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: 0.3 }}
               >
                 <Link
-                  href={link.href}
+                  href="/reservations"
                   onClick={() => setIsOpen(false)}
-                  className="text-2xl font-serif font-bold text-black hover:text-gray-500 transition-colors"
+                  className="block w-full px-8 py-4 bg-white text-emerald-900 font-bold uppercase tracking-wider text-center rounded-full hover:bg-emerald-50 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105"
                 >
-                  {link.name}
+                  Book a Table
                 </Link>
               </motion.div>
-            ))}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: navLinks.length * 0.1 }}
-            >
-              <Link
-                href="/reservations"
-                onClick={() => setIsOpen(false)}
-                className="px-8 py-3 bg-black text-white font-bold uppercase tracking-widest text-sm hover:bg-gray-800 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-              >
-                Book Now
-              </Link>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
