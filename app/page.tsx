@@ -5,10 +5,11 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { ArrowRight, Star, Coffee, Wifi, Calendar, Leaf, ChefHat, Utensils, MapPin, Clock, Phone } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState, useEffect } from "react";
+import { WaveDividerBottom, WaveDividerTop, OrganicTornTop } from "@/components/NatureDividers";
 
 const heroImages = [
   "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2000&auto=format&fit=crop", // Empty table/Ambience
-  "https://images.unsplash.com/photo-1530103862676-de3c9a59af38?q=80&w=2000&auto=format&fit=crop", // Bday celebration
+  "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2000&auto=format&fit=crop", // Bday celebration
   "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2000&auto=format&fit=crop", // Dishes
   "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2000&auto=format&fit=crop", // Book a table
 ];
@@ -27,7 +28,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(timer);
   }, []);
 
@@ -35,24 +36,25 @@ export default function Home() {
     <div ref={containerRef} className="bg-white text-black overflow-x-hidden selection:bg-black selection:text-white">
       
       {/* HERO SECTION - MINIMALIST */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800">
         <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentImageIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5 }}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 2, ease: "easeInOut" }}
               className="absolute inset-0"
             >
               <Image 
                 src={heroImages[currentImageIndex]}
                 alt="Hero Background"
                 fill
-                className="object-cover opacity-30"
+                className="object-cover opacity-40"
                 priority
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-emerald-900/40 to-transparent" />
             </motion.div>
           </AnimatePresence>
         </motion.div>
@@ -64,22 +66,23 @@ export default function Home() {
             transition={{ duration: 1, ease: "easeOut" }}
             className="py-12 md:py-20 flex flex-col items-center"
           >
-            <h2 className="text-black uppercase tracking-[0.5em] text-xs md:text-sm mb-8 font-medium">
-              Est. 2024 · Pimple Nilakh, Pune
-            </h2>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="inline-block px-6 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-8"
+            >
+              <h2 className="text-white uppercase tracking-[0.3em] text-xs md:text-sm font-bold">
+                Est. 2024 · Pimple Nilakh, Pune
+              </h2>
+            </motion.div>
             
-            {/* Logo Image Replacement */}
-            <div className="relative w-64 h-24 md:w-96 md:h-32 mb-6">
-              <Image 
-                src="/logo.jpg" 
-                alt="VanaBella Logo" 
-                fill
-                className="object-contain object-center scale-150"
-                priority
-              />
-            </div>
+            {/* Cafe Name with Cinzel Font */}
+            <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-cinzel font-bold text-white mb-8 tracking-tight drop-shadow-2xl leading-none">
+              Cafe VanaBella
+            </h1>
 
-            <p className="text-lg md:text-xl text-gray-600 max-w-xl mx-auto font-light italic font-serif tracking-wide mt-4">
+            <p className="text-xl md:text-2xl text-emerald-100 max-w-2xl mx-auto font-light font-serif tracking-wide mt-6 drop-shadow-lg leading-relaxed">
               "Where the forest meets the fork."
             </p>
           </motion.div>
@@ -91,47 +94,47 @@ export default function Home() {
             className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6"
           >
             <motion.div 
-              whileHover={{ x: 5 }} 
+              whileHover={{ scale: 1.05, y: -5 }} 
               whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <Link href="/menu" className="group relative block">
-                <div className="px-12 py-5 bg-black text-white border-4 border-black transition-all duration-200 group-hover:translate-x-2 group-hover:translate-y-2">
-                  <span className="font-bold uppercase tracking-[0.2em] text-xs flex items-center gap-4">
-                    View Menu
-                    <span className="text-xl group-hover:translate-x-2 transition-transform duration-200">→</span>
+              <Link href="/reservations" className="group relative block">
+                <div className="px-12 py-5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full transition-all duration-300 group-hover:from-emerald-600 group-hover:to-emerald-700 shadow-2xl group-hover:shadow-emerald-500/50">
+                  <span className="font-bold uppercase tracking-[0.2em] text-sm flex items-center gap-4">
+                    Book your Birthday Spot <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
                   </span>
                 </div>
-                <div className="absolute inset-0 bg-gray-200 border-4 border-black -z-10"></div>
               </Link>
             </motion.div>
             
             <motion.div 
-              whileHover={{ x: -5 }} 
+              whileHover={{ scale: 1.05, y: -5 }} 
               whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <Link href="/celebration" className="group relative block">
-                <div className="px-12 py-5 bg-white text-black border-4 border-black transition-all duration-200 group-hover:-translate-x-2 group-hover:translate-y-2">
-                  <span className="font-bold uppercase tracking-[0.2em] text-xs flex items-center gap-4">
-                    Book Bday Spot
-                    <span className="text-xl group-hover:-translate-x-2 transition-transform duration-200">🎉</span>
+                <div className="px-12 py-5 bg-white text-emerald-900 rounded-full transition-all duration-300 group-hover:bg-emerald-50 shadow-2xl group-hover:shadow-white/50 border-2 border-white/50">
+                  <span className="font-bold uppercase tracking-[0.2em] text-sm flex items-center gap-4">
+                    Explore Menu
+                    <span className="text-xl group-hover:scale-110 transition-transform duration-200">🍽️</span>
                   </span>
                 </div>
-                <div className="absolute inset-0 bg-gray-200 border-4 border-black -z-10"></div>
               </Link>
             </motion.div>
           </motion.div>
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-[1px] h-16 bg-gradient-to-b from-black to-transparent"></div>
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-20">
+          <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent"></div>
         </div>
+        
+        {/* Organic Divider */}
+        <WaveDividerBottom fill="#ffffff" />
       </section>
 
       {/* FEATURES GRID */}
-      <section className="py-24 px-4 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="py-32 px-4 max-w-7xl mx-auto relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {[
             { icon: Coffee, title: "Artisan Coffee", desc: "Sourced from sustainable farms, roasted to perfection." },
             { icon: Leaf, title: "Organic Ingredients", desc: "Farm-to-table freshness in every single dish." },
@@ -144,43 +147,47 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2 }}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              className="group p-8 border-2 border-gray-100 hover:border-black hover:shadow-2xl transition-all duration-300 text-center cursor-pointer"
+              className="group p-10 bg-white rounded-[2rem] shadow-xl hover:shadow-2xl transition-all duration-500 text-center cursor-pointer relative overflow-hidden border border-emerald-50"
             >
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-emerald-400 to-emerald-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              
               <motion.div 
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
-                className="mb-6 inline-flex p-5 bg-gray-50 group-hover:bg-black group-hover:text-white transition-colors duration-300 rounded-full shadow-md"
+                className="mb-6 inline-flex p-6 bg-emerald-50 text-emerald-900 group-hover:bg-emerald-900 group-hover:text-white transition-colors duration-500 rounded-full shadow-inner"
               >
-                <feature.icon size={28} />
+                <feature.icon size={32} />
               </motion.div>
-              <h3 className="text-xl font-serif font-bold mb-3 group-hover:text-gray-700 transition-colors">{feature.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{feature.desc}</p>
+              <h3 className="text-2xl font-cinzel font-bold mb-4 text-emerald-950">{feature.title}</h3>
+              <p className="text-gray-600 text-base leading-relaxed font-serif">{feature.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* IMAGE & TEXT SECTION */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="py-32 bg-emerald-50 relative">
+        <OrganicTornTop fill="#ffffff" />
+        
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative h-[600px] w-full"
+            className="relative h-[600px] w-full rounded-[3rem] overflow-hidden shadow-2xl"
           >
             <Image 
               src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop"
               alt="Cafe Interior"
               fill
-              className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              className="object-cover hover:scale-105 transition-transform duration-1000"
             />
-            <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-white p-8 flex flex-col justify-center items-center text-center shadow-xl hidden md:flex">
-              <span className="text-4xl font-serif font-bold">4.9</span>
-              <div className="flex gap-1 text-black my-2">
-                {[1,2,3,4,5].map(i => <Star key={i} size={12} fill="black" />)}
+            <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-white p-8 flex flex-col justify-center items-center text-center shadow-xl hidden md:flex rounded-tl-[3rem]">
+              <span className="text-5xl font-cinzel font-bold text-emerald-900">4.9</span>
+              <div className="flex gap-1 text-yellow-500 my-2">
+                {[1,2,3,4,5].map(i => <Star key={i} size={14} fill="currentColor" />)}
               </div>
-              <span className="text-xs uppercase tracking-widest text-gray-500">Google Reviews</span>
+              <span className="text-xs uppercase tracking-widest text-gray-400 font-bold">Google Reviews</span>
             </div>
           </motion.div>
 
@@ -190,25 +197,27 @@ export default function Home() {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight">
-              A Symphony of <br/> <span className="italic text-gray-500">Taste & Tranquility</span>
+            <h2 className="text-5xl md:text-6xl font-cinzel font-bold leading-tight text-emerald-950">
+              A Symphony of <br/> <span className="italic text-emerald-600 font-serif">Taste & Tranquility</span>
             </h2>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed text-lg font-serif">
               At VanaBella, we believe that dining is not just about food—it's about the experience. 
               Our space is designed to be a sanctuary from the urban chaos, where the aroma of freshly 
               brewed coffee mingles with the scent of indoor greenery.
             </p>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed text-lg font-serif">
               Whether you're here for a power breakfast, a lazy afternoon with a book, or a productive 
               coworking session, our doors are open to nourish both your body and soul.
             </p>
-            <div className="pt-4">
-              <Link href="/about" className="text-black font-bold uppercase tracking-widest text-xs border-b border-black pb-1 hover:text-gray-600 hover:border-gray-600 transition-colors">
+            <div className="pt-8">
+              <Link href="/about" className="inline-block px-8 py-4 bg-emerald-900 text-white font-bold uppercase tracking-widest text-xs hover:bg-emerald-800 transition-all shadow-lg hover:shadow-xl rounded-full">
                 Read Our Story
               </Link>
             </div>
           </motion.div>
         </div>
+        
+        <WaveDividerBottom fill="#ffffff" />
       </section>
 
       {/* MENU PREVIEW */}

@@ -8,7 +8,7 @@ import { useState } from "react";
 const coworkingImages = [
   { src: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop", title: "Open Workspace", desc: "Bright and airy open seating area." },
   { src: "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?q=80&w=1000&auto=format&fit=crop", title: "Meeting Room", desc: "Fully equipped meeting room for teams." },
-  { src: "https://images.unsplash.com/photo-1504384308090-c54be3855833?q=80&w=1000&auto=format&fit=crop", title: "Private Desk", desc: "Dedicated desk for focused work." },
+  { src: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1000&auto=format&fit=crop", title: "Private Desk", desc: "Dedicated desk for focused work." },
 ];
 
 export default function CoworkingPage() {
@@ -17,14 +17,14 @@ export default function CoworkingPage() {
   return (
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
-      {/* HERO */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-gray-900">
+      {/* HERO BANNER */}
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden bg-emerald-950">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop"
-            alt="Coworking Space"
+            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2000&auto=format&fit=crop"
+            alt="Coworking Hero"
             fill
-            className="object-cover opacity-40"
+            className="object-cover opacity-50"
             priority
           />
         </div>
@@ -32,11 +32,11 @@ export default function CoworkingPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-6"
+            className="text-5xl md:text-7xl font-serif font-bold mb-6 font-cinzel"
           >
-            Work <span className="italic font-light">&</span> Dine
+            Work <span className="italic font-light font-serif">&</span> Dine
           </motion.h1>
-          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
+          <p className="text-emerald-100 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
             A productive space with premium hospitality
           </p>
         </div>
@@ -199,101 +199,6 @@ export default function CoworkingPage() {
                 </button>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ADDITIONAL AMENITIES SECTION */}
-      <section className="py-24 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-serif font-bold mb-4">Why Choose <span className="italic text-gray-500">VanaBella</span> Workspace?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Experience the perfect blend of productivity and comfort in our thoughtfully designed space.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
-            >
-              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
-                <Coffee size={24} className="text-black" />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-3">Premium Coffee Bar</h3>
-              <p className="text-gray-600 leading-relaxed">Unlimited access to our specialty coffee bar featuring artisanal blends, fresh pastries, and healthy snacks throughout the day.</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
-            >
-              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
-                <Wifi size={24} className="text-black" />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-3">Blazing Fast Internet</h3>
-              <p className="text-gray-600 leading-relaxed">500 Mbps fiber optic connection with backup power ensuring uninterrupted connectivity for video calls and uploads.</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
-            >
-              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
-                <Calendar size={24} className="text-black" />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-3">Meeting Rooms</h3>
-              <p className="text-gray-600 leading-relaxed">Book our professional meeting rooms equipped with projectors, whiteboards, and video conferencing for your client presentations.</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
-            >
-              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
-                <Lock size={24} className="text-black" />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-3">Secure Environment</h3>
-              <p className="text-gray-600 leading-relaxed">24/7 CCTV monitoring, secure lockers, and dedicated parking spaces for members. Your safety is our priority.</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4 }}
-              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
-            >
-              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
-                <Zap size={24} className="text-black" />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-3">Power Backup</h3>
-              <p className="text-gray-600 leading-relaxed">Never worry about power cuts. Our space runs on dual backup systems ensuring your work never stops.</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="bg-white p-8 border border-gray-100 hover:border-black hover:shadow-lg transition-all"
-            >
-              <div className="w-12 h-12 bg-gray-100 flex items-center justify-center mb-6">
-                <Printer size={24} className="text-black" />
-              </div>
-              <h3 className="text-xl font-serif font-bold mb-3">Business Services</h3>
-              <p className="text-gray-600 leading-relaxed">Complimentary printing, scanning, and photocopying services. Professional stationery and office supplies available.</p>
-            </motion.div>
           </div>
         </div>
       </section>

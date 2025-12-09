@@ -37,65 +37,42 @@ export default function Navbar() {
 
   return (
     <nav
-      className={clsx(
-        "fixed w-full z-50 transition-all duration-300",
-        scrolled 
-          ? "bg-white shadow-lg py-3" 
-          : isHome 
-            ? "bg-white/5 backdrop-blur-sm py-6" 
-            : "bg-white shadow-md py-4"
-      )}
+      className="sticky top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-sm py-3 transition-all duration-300 border-b border-emerald-100/50"
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         
         {/* Logo */}
         <Link href="/" className="relative z-50 group">
-          <div className="flex items-center h-12 md:h-14 overflow-hidden">
+          <div className="flex items-center h-14 md:h-16 overflow-hidden bg-gradient-to-br from-emerald-50 to-white rounded-xl px-3 shadow-sm group-hover:shadow-md transition-shadow">
             <Image 
               src="/logo.jpg" 
               alt="Cafe VanaBella Logo" 
               width={140} 
               height={56} 
-              className={clsx(
-                "object-cover object-center scale-125 transition-all duration-300",
-                scrolled || !isHome ? "brightness-100" : "brightness-110 drop-shadow-2xl"
-              )}
-              style={{ objectPosition: 'center 50%' }}
+              className="object-contain object-center w-auto h-full mix-blend-multiply"
+              style={{ objectPosition: 'center' }}
               priority
             />
           </div>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-10">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className={clsx(
-                "text-sm font-semibold uppercase tracking-wider transition-all duration-300 hover:scale-110 relative group",
-                scrolled || !isHome 
-                  ? "text-gray-800 hover:text-black" 
-                  : "text-white hover:text-gray-200 drop-shadow-md"
-              )}
+              className="text-sm font-bold uppercase tracking-wide transition-all duration-300 relative group text-emerald-900 hover:text-emerald-600"
             >
               {link.name}
-              <span className={clsx(
-                "absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full",
-                scrolled || !isHome ? "bg-black" : "bg-white"
-              )}></span>
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] transition-all duration-300 group-hover:w-full bg-gradient-to-r from-emerald-500 to-emerald-700"></span>
             </Link>
           ))}
           <Link
             href="/reservations"
-            className={clsx(
-              "px-6 py-2.5 border-2 text-sm font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg",
-              scrolled || !isHome 
-                ? "border-black text-black bg-white hover:bg-black hover:text-white" 
-                : "border-white text-white bg-black/30 backdrop-blur-sm hover:bg-white hover:text-black"
-            )}
+            className="px-8 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl bg-gradient-to-r from-emerald-600 to-emerald-700 text-white hover:from-emerald-700 hover:to-emerald-800"
           >
-            Book Now
+            Book a Table
           </Link>
         </div>
 
@@ -103,11 +80,11 @@ export default function Navbar() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={clsx(
-            "md:hidden relative z-50 transition-colors duration-300",
-            scrolled || !isHome ? "text-black" : "text-white drop-shadow-lg"
+            "md:hidden relative z-50 transition-colors duration-300 p-2 rounded-lg hover:bg-emerald-50",
+            "text-emerald-950"
           )}
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
       </div>
 

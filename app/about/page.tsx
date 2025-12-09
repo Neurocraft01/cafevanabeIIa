@@ -8,14 +8,14 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
-      {/* HERO SECTION */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-gray-900">
+      {/* HERO BANNER */}
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden bg-emerald-950">
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2000&auto=format&fit=crop"
-            alt="Restaurant Interior"
+            alt="About Hero"
             fill
-            className="object-cover opacity-40"
+            className="object-cover opacity-50"
             priority
           />
         </div>
@@ -23,11 +23,11 @@ export default function AboutPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-6"
+            className="text-5xl md:text-7xl font-serif font-bold mb-6 font-cinzel"
           >
-            Our <span className="italic font-light">Story</span>
+            Our <span className="italic font-light font-serif">Story</span>
           </motion.h1>
-          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
+          <p className="text-emerald-100 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
             Crafting culinary experiences since 2024
           </p>
         </div>
@@ -44,7 +44,7 @@ export default function AboutPage() {
               className="relative h-[600px] w-full"
             >
               <Image 
-                src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?q=80&w=1000&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1577219491135-ce391730fb4c?q=80&w=1000&auto=format&fit=crop"
                 alt="Chef Cooking"
                 fill
                 className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
@@ -176,6 +176,24 @@ export default function AboutPage() {
                 role: "Regular Guest",
                 review: "Celebrated my birthday here last week. The decoration was beautiful and the cake was delicious. Thank you VanaBella for making it special!",
                 rating: 4
+              },
+              {
+                name: "Aanya P.",
+                role: "Guest",
+                review: "Loved the vibe and the pastries. Perfect for birthdays!",
+                rating: 5
+              },
+              {
+                name: "Rahul M.",
+                role: "Coffee Lover",
+                review: "Cozy spot, great coffee, friendly staff.",
+                rating: 5
+              },
+              {
+                name: "Priya S.",
+                role: "Parent",
+                review: "Booked for my kid’s party — seamless experience.",
+                rating: 5
               }
             ].map((review, index) => (
               <motion.div 

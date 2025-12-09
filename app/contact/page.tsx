@@ -8,14 +8,14 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
-      {/* HERO */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-gray-900">
+      {/* HERO BANNER */}
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden bg-emerald-950">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?q=80&w=2000&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2000&auto=format&fit=crop"
             alt="Contact Hero"
             fill
-            className="object-cover opacity-40"
+            className="object-cover opacity-50"
             priority
           />
         </div>
@@ -23,11 +23,11 @@ export default function ContactPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-6"
+            className="text-5xl md:text-7xl font-serif font-bold mb-6 font-cinzel"
           >
-            Get in <span className="italic font-light">Touch</span>
+            Get in <span className="italic font-light font-serif">Touch</span>
           </motion.h1>
-          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
+          <p className="text-emerald-100 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
             We'd love to hear from you
           </p>
         </div>

@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Search, Leaf, Flame } from "lucide-react";
 import { menuItems, categories, MenuItem } from "@/data/menu";
+import Image from "next/image";
 import clsx from "clsx";
 
 export default function MenuPage() {
@@ -47,26 +48,35 @@ export default function MenuPage() {
       {/* PAPER TEXTURE OVERLAY */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-0" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }}></div>
 
-      {/* HEADER */}
-      <header className="relative py-20 px-4 text-center border-b-4 border-double border-emerald-900/20 bg-[#f4f1ea]">
-        <div className="max-w-4xl mx-auto relative z-10">
+      {/* HERO BANNER */}
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden bg-emerald-950">
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2000&auto=format&fit=crop"
+            alt="Menu Hero"
+            fill
+            className="object-cover opacity-50"
+            priority
+          />
+        </div>
+        <div className="relative z-10 text-center px-4 text-white">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-emerald-900 text-sm font-bold tracking-[0.3em] uppercase mb-4">Est. 2024</h2>
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 tracking-tighter text-emerald-950">
-              Cafe Vanabella
+            <h2 className="text-emerald-200 text-sm font-bold tracking-[0.3em] uppercase mb-4">Est. 2024</h2>
+            <h1 className="text-6xl md:text-8xl font-bold mb-6 tracking-tighter text-white font-cinzel">
+              Our Menu
             </h1>
-            <div className="flex items-center justify-center gap-4 text-emerald-800/60 mb-8">
-              <span className="h-px w-12 bg-emerald-900/30"></span>
-              <span className="italic text-xl">Fine Dining & Coffee</span>
-              <span className="h-px w-12 bg-emerald-900/30"></span>
+            <div className="flex items-center justify-center gap-4 text-emerald-200/80 mb-8">
+              <span className="h-px w-12 bg-emerald-200/50"></span>
+              <span className="italic text-xl font-serif">Fine Dining & Coffee</span>
+              <span className="h-px w-12 bg-emerald-200/50"></span>
             </div>
           </motion.div>
         </div>
-      </header>
+      </section>
 
       {/* CONTROLS SECTION */}
       <div className="sticky top-0 z-40 bg-[#fdfbf7]/95 backdrop-blur-sm border-b border-emerald-900/10 shadow-sm">

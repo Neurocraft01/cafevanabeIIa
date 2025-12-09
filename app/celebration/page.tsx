@@ -9,14 +9,14 @@ export default function CelebrationPage() {
   return (
     <div className="min-h-screen bg-white text-black selection:bg-black selection:text-white">
       
-      {/* HERO */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-gray-900">
+      {/* HERO BANNER */}
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden bg-emerald-950">
         <div className="absolute inset-0 z-0">
           <Image 
-            src="https://images.unsplash.com/photo-1530103862676-de3c9a59af38?q=80&w=2000&auto=format&fit=crop"
-            alt="Birthday Celebration"
+            src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2000&auto=format&fit=crop"
+            alt="Celebration Hero"
             fill
-            className="object-cover opacity-40"
+            className="object-cover opacity-50"
             priority
           />
         </div>
@@ -24,11 +24,11 @@ export default function CelebrationPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold mb-6"
+            className="text-5xl md:text-7xl font-serif font-bold mb-6 font-cinzel"
           >
-            Celebrate <span className="italic font-light">Life</span>
+            Celebrate <span className="italic font-light font-serif">Life</span>
           </motion.h1>
-          <p className="text-gray-300 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
+          <p className="text-emerald-100 font-light tracking-widest uppercase text-sm md:text-base max-w-2xl mx-auto">
             Make your special moments unforgettable at VanaBella
           </p>
         </div>
@@ -63,6 +63,101 @@ export default function CelebrationPage() {
                 <span className="text-sm font-bold uppercase tracking-widest">{feature.label}</span>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY CHOOSE VANABELLA (Moved from Coworking) */}
+      <section className="py-24 px-4 bg-emerald-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-serif font-bold mb-4 text-emerald-950">Why Choose <span className="italic text-emerald-600">VanaBella</span>?</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">Experience the perfect blend of celebration and nature in our thoughtfully designed space.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white p-8 border border-emerald-100 hover:border-emerald-600 hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-emerald-100 flex items-center justify-center mb-6 rounded-full">
+                <Star size={24} className="text-emerald-800" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3 text-emerald-950">Exquisite Ambiance</h3>
+              <p className="text-gray-600 leading-relaxed">A nature-inspired setting that provides the perfect backdrop for your photos and memories.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-white p-8 border border-emerald-100 hover:border-emerald-600 hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-emerald-100 flex items-center justify-center mb-6 rounded-full">
+                <Cake size={24} className="text-emerald-800" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3 text-emerald-950">Gourmet Catering</h3>
+              <p className="text-gray-600 leading-relaxed">Customizable menus featuring our signature dishes and beverages to delight your guests.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-white p-8 border border-emerald-100 hover:border-emerald-600 hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-emerald-100 flex items-center justify-center mb-6 rounded-full">
+                <Gift size={24} className="text-emerald-800" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3 text-emerald-950">Personalized Decor</h3>
+              <p className="text-gray-600 leading-relaxed">From balloons to floral arrangements, we tailor the decor to match your theme perfectly.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="bg-white p-8 border border-emerald-100 hover:border-emerald-600 hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-emerald-100 flex items-center justify-center mb-6 rounded-full">
+                <Users size={24} className="text-emerald-800" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3 text-emerald-950">Dedicated Team</h3>
+              <p className="text-gray-600 leading-relaxed">Our experienced staff will handle everything from planning to execution, so you can enjoy.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="bg-white p-8 border border-emerald-100 hover:border-emerald-600 hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-emerald-100 flex items-center justify-center mb-6 rounded-full">
+                <Music size={24} className="text-emerald-800" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3 text-emerald-950">Entertainment</h3>
+              <p className="text-gray-600 leading-relaxed">Music systems and AV equipment available to keep the party going all night long.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="bg-white p-8 border border-emerald-100 hover:border-emerald-600 hover:shadow-lg transition-all"
+            >
+              <div className="w-12 h-12 bg-emerald-100 flex items-center justify-center mb-6 rounded-full">
+                <Calendar size={24} className="text-emerald-800" />
+              </div>
+              <h3 className="text-xl font-serif font-bold mb-3 text-emerald-950">Flexible Booking</h3>
+              <p className="text-gray-600 leading-relaxed">Easy reservation process with flexible slots to suit your schedule and requirements.</p>
+            </motion.div>
           </div>
         </div>
       </section>

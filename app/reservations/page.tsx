@@ -9,14 +9,14 @@ export default function ReservationsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 text-black">
       
-      {/* HERO */}
-      <section className="relative h-[40vh] flex items-center justify-center overflow-hidden bg-gradient-to-r from-gray-900 to-gray-800">
-        <div className="absolute inset-0 z-0 opacity-30">
+      {/* HERO BANNER */}
+      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden bg-emerald-950">
+        <div className="absolute inset-0 z-0">
           <Image 
             src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2000&auto=format&fit=crop"
             alt="Reservations Hero"
             fill
-            className="object-cover"
+            className="object-cover opacity-50"
             priority
           />
         </div>
@@ -24,15 +24,15 @@ export default function ReservationsPage() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-serif font-bold mb-3"
+            className="text-5xl md:text-7xl font-serif font-bold mb-6 font-cinzel"
           >
-            Reserve a Table
+            Reserve a <span className="italic font-light font-serif">Table</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-gray-300 font-light text-base md:text-lg"
+            className="text-emerald-100 font-light text-base md:text-lg"
           >
             Book your table for an unforgettable dining experience
           </motion.p>
