@@ -35,101 +35,200 @@ export default function Home() {
   return (
     <div ref={containerRef} className="bg-white text-black overflow-x-hidden selection:bg-black selection:text-white">
       
-      {/* HERO SECTION - MINIMALIST */}
-      <section className="relative h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800">
-        <motion.div style={{ y: yHero, opacity: opacityHero }} className="absolute inset-0 z-0">
+      {/* HERO SECTION - MODERN SPLIT LAYOUT */}
+      <section className="relative min-h-screen grid grid-cols-1 lg:grid-cols-2 overflow-hidden bg-white">
+        
+        {/* LEFT SIDE - Content */}
+        <div className="relative z-10 flex flex-col justify-center px-6 md:px-12 lg:px-20 py-20 lg:py-32 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="space-y-8"
+          >
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="inline-flex items-center gap-3 px-5 py-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/20"
+            >
+              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+              <span className="text-white text-sm font-bold tracking-wider">AWARD WINNING CAFE</span>
+            </motion.div>
+
+            {/* Main Title */}
+            <div className="space-y-4">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-cinzel font-bold text-white leading-none tracking-tight"
+              >
+                Cafe
+                <br />
+                <span className="bg-gradient-to-r from-emerald-300 via-emerald-200 to-white bg-clip-text text-transparent">
+                  VanaBella
+                </span>
+              </motion.h1>
+              
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+                className="flex items-center gap-3"
+              >
+                <div className="h-[2px] w-16 bg-gradient-to-r from-emerald-400 to-transparent"></div>
+                <p className="text-emerald-100 text-sm md:text-base uppercase tracking-[0.3em] font-light">
+                  Est. 2024
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Description */}
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="text-lg md:text-xl text-emerald-50/90 max-w-xl font-serif leading-relaxed"
+            >
+              Experience the perfect harmony of nature and culinary artistry. Where every moment is crafted with passion, every dish tells a story.
+            </motion.p>
+
+            {/* Quick Info Cards */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="grid grid-cols-2 gap-4 pt-6"
+            >
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-5 border border-white/20">
+                <MapPin className="w-6 h-6 text-emerald-300 mb-2" />
+                <p className="text-white text-sm font-bold">Pimple Nilakh</p>
+                <p className="text-emerald-200 text-xs">Pune, Maharashtra</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-5 border border-white/20">
+                <Clock className="w-6 h-6 text-emerald-300 mb-2" />
+                <p className="text-white text-sm font-bold">Open Daily</p>
+                <p className="text-emerald-200 text-xs">9 AM - 11 PM</p>
+              </div>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="flex flex-col sm:flex-row gap-4 pt-8"
+            >
+              <motion.div 
+                whileHover={{ scale: 1.05, y: -3 }} 
+                whileTap={{ scale: 0.98 }}
+              >
+                <Link 
+                  href="/reservations" 
+                  className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-emerald-900 rounded-full font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:bg-emerald-50 shadow-2xl overflow-hidden"
+                >
+                  <span className="relative z-10">Reserve Table</span>
+                  <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-600 opacity-0 group-hover:opacity-20 transition-opacity"></div>
+                </Link>
+              </motion.div>
+              
+              <motion.div 
+                whileHover={{ scale: 1.05, y: -3 }} 
+                whileTap={{ scale: 0.98 }}
+              >
+                <Link 
+                  href="/menu" 
+                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent text-white rounded-full font-bold uppercase tracking-wider text-sm border-2 border-white/30 hover:border-white transition-all duration-300 backdrop-blur-sm"
+                >
+                  <Utensils className="w-5 h-5" />
+                  <span>View Menu</span>
+                </Link>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* RIGHT SIDE - Image Slideshow */}
+        <div className="relative h-[60vh] lg:h-full overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentImageIndex}
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 2, ease: "easeInOut" }}
+              initial={{ opacity: 0, scale: 1.2, x: 100 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              exit={{ opacity: 0, scale: 0.95, x: -100 }}
+              transition={{ duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }}
               className="absolute inset-0"
             >
               <Image 
                 src={heroImages[currentImageIndex]}
-                alt="Hero Background"
+                alt="Cafe VanaBella"
                 fill
-                className="object-cover opacity-40"
+                className="object-cover"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-emerald-900/40 to-transparent" />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/40 via-transparent to-emerald-900/30"></div>
+              
+              {/* Image Counter */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-sm rounded-full px-6 py-3 shadow-xl"
+              >
+                <span className="text-emerald-900 font-bold text-sm">
+                  {currentImageIndex + 1} / {heroImages.length}
+                </span>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
-        </motion.div>
 
-        <div className="relative z-10 text-center px-4 w-full max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="py-12 md:py-20 flex flex-col items-center"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="inline-block px-6 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-8"
-            >
-              <h2 className="text-white uppercase tracking-[0.3em] text-xs md:text-sm font-bold">
-                Est. 2024 · Pimple Nilakh, Pune
-              </h2>
-            </motion.div>
-            
-            {/* Cafe Name with Cinzel Font */}
-            <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-cinzel font-bold text-white mb-8 tracking-tight drop-shadow-2xl leading-none">
-              Cafe VanaBella
-            </h1>
+          {/* Navigation Dots */}
+          <div className="absolute bottom-8 left-8 z-10 flex gap-2">
+            {heroImages.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentImageIndex(idx)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  idx === currentImageIndex 
+                    ? 'w-12 bg-white' 
+                    : 'w-2 bg-white/50 hover:bg-white/80'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
 
-            <p className="text-xl md:text-2xl text-emerald-100 max-w-2xl mx-auto font-light font-serif tracking-wide mt-6 drop-shadow-lg leading-relaxed">
-              "Where the forest meets the fork."
-            </p>
-          </motion.div>
-
+          {/* Decorative Elements */}
           <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            className="mt-12 flex flex-col md:flex-row items-center justify-center gap-6"
-          >
-            <motion.div 
-              whileHover={{ scale: 1.05, y: -5 }} 
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <Link href="/reservations" className="group relative block">
-                <div className="px-12 py-5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-full transition-all duration-300 group-hover:from-emerald-600 group-hover:to-emerald-700 shadow-2xl group-hover:shadow-emerald-500/50">
-                  <span className="font-bold uppercase tracking-[0.2em] text-sm flex items-center gap-4">
-                    Book your Birthday Spot <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
-                  </span>
-                </div>
-              </Link>
-            </motion.div>
-            
-            <motion.div 
-              whileHover={{ scale: 1.05, y: -5 }} 
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <Link href="/celebration" className="group relative block">
-                <div className="px-12 py-5 bg-white text-emerald-900 rounded-full transition-all duration-300 group-hover:bg-emerald-50 shadow-2xl group-hover:shadow-white/50 border-2 border-white/50">
-                  <span className="font-bold uppercase tracking-[0.2em] text-sm flex items-center gap-4">
-                    Explore Menu
-                    <span className="text-xl group-hover:scale-110 transition-transform duration-200">🍽️</span>
-                  </span>
-                </div>
-              </Link>
-            </motion.div>
-          </motion.div>
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.5, duration: 1 }}
+            className="absolute top-8 right-8 w-32 h-32 bg-emerald-500/20 rounded-full blur-3xl"
+          />
+          <motion.div 
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.7, duration: 1 }}
+            className="absolute bottom-20 left-20 w-40 h-40 bg-yellow-400/10 rounded-full blur-3xl"
+          />
         </div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce z-20">
-          <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent"></div>
-        </div>
-        
-        {/* Organic Divider */}
-        <WaveDividerBottom fill="#ffffff" />
+        {/* Scroll Indicator - Only visible on desktop */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="hidden lg:block absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+        >
+          <div className="flex flex-col items-center gap-2 animate-bounce">
+            <span className="text-emerald-800 text-xs uppercase tracking-widest font-bold">Scroll</span>
+            <div className="w-[1px] h-12 bg-gradient-to-b from-emerald-600 to-transparent"></div>
+          </div>
+        </motion.div>
       </section>
 
       {/* FEATURES GRID */}
