@@ -36,10 +36,10 @@ export default function Home() {
     <div ref={containerRef} className="bg-white text-black overflow-x-hidden selection:bg-black selection:text-white">
       
       {/* HERO SECTION - MODERN SPLIT LAYOUT */}
-      <section className="relative min-h-screen grid grid-cols-1 lg:grid-cols-2 overflow-hidden bg-white">
+      <section className="relative h-[100vh] lg:h-[95vh] grid grid-cols-1 lg:grid-cols-2 overflow-hidden bg-white">
         
         {/* LEFT SIDE - Content */}
-        <div className="relative z-10 flex flex-col justify-center px-6 md:px-12 lg:px-20 py-20 lg:py-32 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800">
+        <div className="relative z-10 flex flex-col justify-center px-6 md:px-12 lg:px-20 py-12 lg:py-16 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -47,15 +47,26 @@ export default function Home() {
             className="space-y-8"
           >
             {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="inline-flex items-center gap-3 px-5 py-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/20"
-            >
-              <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-              <span className="text-white text-sm font-bold tracking-wider">AWARD WINNING CAFE</span>
-            </motion.div>
+            <div className="flex flex-wrap gap-3">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                className="inline-flex items-center gap-3 px-5 py-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/20"
+              >
+                <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                <span className="text-white text-sm font-bold tracking-wider">AWARD WINNING CAFE</span>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="inline-flex items-center gap-2 px-5 py-2 bg-emerald-500/20 backdrop-blur-xl rounded-full border border-emerald-400/30"
+              >
+                <Leaf className="w-4 h-4 text-emerald-300 fill-emerald-300" />
+                <span className="text-emerald-100 text-sm font-bold tracking-wider">100% PURE VEG</span>
+              </motion.div>
+            </div>
 
             {/* Main Title */}
             <div className="space-y-4">
@@ -152,7 +163,7 @@ export default function Home() {
         </div>
 
         {/* RIGHT SIDE - Image Slideshow */}
-        <div className="relative h-[60vh] lg:h-full overflow-hidden">
+        <div className="relative h-[100vh] lg:h-full overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentImageIndex}

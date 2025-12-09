@@ -220,6 +220,162 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* 360 VIRTUAL TOUR SECTION */}
+      <section className="py-24 px-4 bg-white relative overflow-hidden">
+        <div className="container mx-auto max-w-7xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-cinzel font-bold mb-4 text-emerald-950">
+              Experience Our <span className="italic font-light">Space</span>
+            </h2>
+            <p className="text-gray-600 font-serif max-w-2xl mx-auto">
+              Take a virtual tour of our beautiful cafe and explore the ambiance before you visit
+            </p>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-3xl overflow-hidden shadow-2xl border border-emerald-200"
+          >
+            <div className="aspect-video relative bg-emerald-900/10 flex items-center justify-center">
+              {/* Placeholder for 360 view - can be replaced with actual 360 viewer */}
+              <div className="text-center p-12">
+                <div className="w-24 h-24 mx-auto mb-6 bg-emerald-600 rounded-full flex items-center justify-center animate-pulse">
+                  <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-cinzel font-bold text-emerald-950 mb-3">360° Virtual Tour</h3>
+                <p className="text-emerald-800 mb-6">Interactive tour coming soon</p>
+                <button className="px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full font-bold uppercase tracking-wider text-sm transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                  Launch Virtual Tour
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* LOCATION & CONTACT SECTION */}
+      <section className="py-24 px-4 bg-emerald-50 relative">
+        <div className="container mx-auto max-w-7xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-cinzel font-bold mb-4 text-emerald-950">
+              Visit <span className="italic font-light">Us</span>
+            </h2>
+            <p className="text-gray-600 font-serif">Find us in the heart of Pimple Nilakh</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Google Maps */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl overflow-hidden shadow-2xl border border-emerald-200"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.0358!2d73.7713!3d18.6015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTjCsDM2JzA1LjQiTiA3M8KwNDYnMTYuNyJF!5e0!3m2!1sen!2sin!4v1234567890"
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="grayscale hover:grayscale-0 transition-all duration-500"
+              ></iframe>
+            </motion.div>
+
+            {/* Contact Details */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div className="bg-white rounded-2xl p-8 shadow-xl border border-emerald-100">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="p-3 bg-emerald-100 rounded-full">
+                    <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-cinzel font-bold text-emerald-950 mb-2">Address</h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Pimple Nilakh<br />
+                      Pune, Maharashtra 411027<br />
+                      India
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-8 shadow-xl border border-emerald-100">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="p-3 bg-emerald-100 rounded-full">
+                    <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-cinzel font-bold text-emerald-950 mb-2">Phone</h3>
+                    <p className="text-gray-600">
+                      <a href="tel:+919876543210" className="hover:text-emerald-600 transition-colors">+91 98765 43210</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-8 shadow-xl border border-emerald-100">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="p-3 bg-emerald-100 rounded-full">
+                    <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-cinzel font-bold text-emerald-950 mb-2">Hours</h3>
+                    <p className="text-gray-600">
+                      Monday - Sunday<br />
+                      9:00 AM - 11:00 PM
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-8 shadow-xl border border-emerald-100">
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="p-3 bg-emerald-100 rounded-full">
+                    <svg className="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-cinzel font-bold text-emerald-950 mb-2">Email</h3>
+                    <p className="text-gray-600">
+                      <a href="mailto:info@cafevanabella.com" className="hover:text-emerald-600 transition-colors">info@cafevanabella.com</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

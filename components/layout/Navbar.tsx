@@ -15,6 +15,7 @@ const navLinks = [
   { name: "Celebration", href: "/celebration" },
   { name: "Co-working", href: "/coworking" },
   { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {

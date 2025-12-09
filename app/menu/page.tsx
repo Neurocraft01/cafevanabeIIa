@@ -120,13 +120,6 @@ export default function MenuPage() {
               
               <div className="flex gap-2">
                 <button 
-                  onClick={() => toggleFilter('veg')}
-                  className={clsx("p-2 rounded-full transition-all duration-300 border", filters.veg ? "bg-emerald-100 text-emerald-800 border-emerald-200" : "bg-transparent text-gray-400 border-transparent hover:bg-emerald-50")}
-                  title="Vegetarian Only"
-                >
-                  <Leaf size={16} />
-                </button>
-                <button 
                   onClick={() => toggleFilter('chefSpecial')}
                   className={clsx("p-2 rounded-full transition-all duration-300 border", filters.chefSpecial ? "bg-orange-100 text-orange-800 border-orange-200" : "bg-transparent text-gray-400 border-transparent hover:bg-orange-50")}
                   title="Chef's Specials"

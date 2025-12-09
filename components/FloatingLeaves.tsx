@@ -4,7 +4,11 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Leaf } from "lucide-react";
 
-export default function FloatingLeaves() {
+interface FloatingLeavesProps {
+  forWhiteBackground?: boolean;
+}
+
+export default function FloatingLeaves({ forWhiteBackground = false }: FloatingLeavesProps) {
   const [leaves, setLeaves] = useState<{ id: number; x: number; delay: number; duration: number; size: number; rotation: number }[]>([]);
 
   useEffect(() => {
@@ -21,7 +25,7 @@ export default function FloatingLeaves() {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-[5] overflow-hidden">
       {leaves.map((leaf) => (
         <motion.div
           key={leaf.id}
@@ -34,7 +38,7 @@ export default function FloatingLeaves() {
           animate={{ 
             y: "110vh", 
             x: [`${leaf.x}vw`, `${leaf.x + (Math.random() * 10 - 5)}vw`, `${leaf.x}vw`], // Swaying motion
-            opacity: [0, 0.15, 0], 
+            opacity: forWhiteBackground ? [0, 0.5, 0] : [0, 0.15, 0], 
             rotate: leaf.rotation + 360 
           }}
           transition={{ 
@@ -43,7 +47,7 @@ export default function FloatingLeaves() {
             delay: leaf.delay,
             ease: "easeInOut"
           }}
-          className="absolute text-emerald-900/30 blur-[0.5px]"
+          className={forWhiteBackground ? "absolute text-emerald-700/80" : "absolute text-emerald-900/30 blur-[0.5px]"}
         >
           <Leaf size={leaf.size} fill="currentColor" />
         </motion.div>

@@ -5,7 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingContact from "@/components/FloatingContact";
 import Chatbot from "@/components/Chatbot";
-import FloatingLeaves from "@/components/FloatingLeaves";
+import ConditionalLeaves from "@/components/ConditionalLeaves";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -41,7 +41,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} ${cinzel.variable} font-sans antialiased bg-white text-black`}
       >
-        <FloatingLeaves />
+        <ConditionalLeaves />
         <Navbar />
         <main className="min-h-screen relative z-10">
           {children}
