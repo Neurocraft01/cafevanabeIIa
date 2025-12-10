@@ -38,18 +38,18 @@ export default function Navbar() {
 
   return (
     <nav
-      className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm py-3 transition-all duration-300 border-b border-emerald-100/50"
+      className="fixed top-0 w-full z-50 bg-white shadow-sm py-2 transition-all duration-300 border-b border-emerald-100"
     >
-      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
+      <div className="container mx-auto px-4 md:px-12 flex justify-between items-center">
         
         {/* Logo */}
-        <Link href="/" className="relative z-50 group">
-          <div className="flex items-center h-14 md:h-16 overflow-hidden bg-gradient-to-br from-emerald-50 to-white rounded-xl px-3 shadow-sm group-hover:shadow-md transition-shadow">
+        <Link href="/" className="relative z-[60] group">
+          <div className="flex items-center h-12 md:h-14 overflow-hidden bg-gradient-to-br from-emerald-50 to-white rounded-lg px-2 shadow-sm group-hover:shadow-md transition-shadow">
             <Image 
               src="/logo.jpg" 
               alt="Cafe VanaBella Logo" 
-              width={140} 
-              height={56} 
+              width={120} 
+              height={48} 
               className="object-contain object-center w-auto h-full mix-blend-multiply"
               style={{ objectPosition: 'center' }}
               priority
@@ -81,7 +81,7 @@ export default function Navbar() {
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={clsx(
-            "md:hidden relative z-50 transition-colors duration-300 p-2 rounded-lg hover:bg-emerald-50",
+            "md:hidden relative z-[60] transition-colors duration-300 p-2 rounded-lg hover:bg-emerald-50",
             "text-emerald-950"
           )}
         >
@@ -92,68 +92,75 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-y-0 right-0 w-full sm:w-80 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800 z-40 flex flex-col shadow-2xl"
-          >
-            {/* Mobile Menu Header */}
-            <div className="p-6 border-b border-white/10">
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-cinzel font-bold text-white">Menu</h2>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white"
-                >
-                  <X size={24} />
-                </button>
-              </div>
-            </div>
-
-            {/* Navigation Links */}
-            <div className="flex-1 overflow-y-auto py-8 px-6 space-y-2">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05, type: "spring", damping: 20 }}
-                >
-                  <Link
-                    href={link.href}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[45] md:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+            
+            {/* Menu Drawer */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-white z-[50] flex flex-col shadow-2xl overflow-hidden"
+            >
+              {/* Mobile Menu Header */}
+              <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 pt-6 pb-5 px-6">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-xl font-cinzel font-bold text-white">Menu</h2>
+                  <button
                     onClick={() => setIsOpen(false)}
-                    className={clsx(
-                      "block px-6 py-4 rounded-xl text-lg font-bold uppercase tracking-wide transition-all duration-300",
-                      pathname === link.href
-                        ? "bg-white text-emerald-900 shadow-lg"
-                        : "text-white hover:bg-white/10"
-                    )}
+                    className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors text-white"
                   >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+                    <X size={20} />
+                  </button>
+                </div>
+              </div>
 
-            {/* CTA Button */}
-            <div className="p-6 border-t border-white/10">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-              >
+              {/* Navigation Links */}
+              <div className="flex-1 overflow-y-auto py-4 px-3 bg-gray-50">
+                {navLinks.map((link, index) => (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className={clsx(
+                        "block px-4 py-3 mb-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all duration-200",
+                        pathname === link.href
+                          ? "bg-emerald-600 text-white shadow-md"
+                          : "text-gray-700 hover:bg-emerald-50 hover:text-emerald-700"
+                      )}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* CTA Button */}
+              <div className="p-4 border-t border-gray-200 bg-white">
                 <Link
                   href="/reservations"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full px-8 py-4 bg-white text-emerald-900 font-bold uppercase tracking-wider text-center rounded-full hover:bg-emerald-50 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105"
+                  className="block w-full px-4 py-3 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white font-bold uppercase tracking-wide text-xs text-center rounded-lg hover:from-emerald-700 hover:to-emerald-800 transition-all shadow-lg"
                 >
                   Book a Table
                 </Link>
-              </motion.div>
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
