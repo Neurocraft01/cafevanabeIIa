@@ -36,7 +36,7 @@ export default function Home() {
     <div ref={containerRef} className="bg-white text-black overflow-x-hidden selection:bg-black selection:text-white">
       
       {/* HERO SECTION - MODERN SPLIT LAYOUT */}
-      <section className="relative min-h-screen grid grid-cols-1 lg:grid-cols-2 overflow-hidden bg-white">
+      <section className="relative min-h-screen pt-20 grid grid-cols-1 lg:grid-cols-2 overflow-hidden bg-white">
         
         {/* LEFT SIDE - Content */}
         <div className="relative z-10 flex flex-col justify-center px-6 md:px-12 lg:px-20 py-12 lg:py-16 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-800">
