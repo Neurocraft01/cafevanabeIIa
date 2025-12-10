@@ -13,12 +13,12 @@ export default function FloatingLeaves({ forWhiteBackground = false }: FloatingL
 
   useEffect(() => {
     // Create a set of leaves with random properties
-    const newLeaves = Array.from({ length: 20 }).map((_, i) => ({
+    const newLeaves = Array.from({ length: 10 }).map((_, i) => ({
       id: i,
       x: Math.random() * 100, // Random horizontal position %
-      delay: Math.random() * 20, // Random delay
-      duration: 15 + Math.random() * 20, // Random duration (slow fall)
-      size: 12 + Math.random() * 24, // Random size
+      delay: Math.random() * 15, // Random delay
+      duration: 20 + Math.random() * 15, // Random duration (slow fall)
+      size: 14 + Math.random() * 20, // Random size
       rotation: Math.random() * 360, // Random initial rotation
     }));
     setLeaves(newLeaves);
@@ -37,15 +37,15 @@ export default function FloatingLeaves({ forWhiteBackground = false }: FloatingL
           }}
           animate={{ 
             y: "110vh", 
-            x: [`${leaf.x}vw`, `${leaf.x + (Math.random() * 10 - 5)}vw`, `${leaf.x}vw`], // Swaying motion
-            opacity: forWhiteBackground ? [0, 0.6, 0] : [0, 0.15, 0], 
-            rotate: leaf.rotation + 360 
+            x: [`${leaf.x}vw`, `${leaf.x + (Math.random() * 8 - 4)}vw`, `${leaf.x}vw`], // Swaying motion
+            opacity: forWhiteBackground ? [0, 0.5, 0] : [0, 0.15, 0], 
+            rotate: leaf.rotation + 180 
           }}
           transition={{ 
             duration: leaf.duration, 
             repeat: Infinity, 
             delay: leaf.delay,
-            ease: "easeInOut"
+            ease: "linear"
           }}
           className={forWhiteBackground ? "absolute text-emerald-600/90" : "absolute text-emerald-900/30 blur-[0.5px]"}
         >

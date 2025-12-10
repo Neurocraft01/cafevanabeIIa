@@ -38,7 +38,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="sticky top-0 w-full z-50 bg-white/90 backdrop-blur-xl shadow-sm py-3 transition-all duration-300 border-b border-emerald-100/50"
+      className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm py-3 transition-all duration-300 border-b border-emerald-100/50"
     >
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         
